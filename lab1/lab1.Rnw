@@ -1,0 +1,390 @@
+\documentclass{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{amsfonts, amsmath}
+\usepackage{placeins}
+
+
+\title{Lab 1: Correlation and Linear Regression}
+\author{}
+\begin{document}
+\maketitle  
+
+Today we will be reviewing various data sets having to do with the Buffalo Bills and US presidential elections. Our goals for this week are
+
+\begin{itemize}
+\item Review concepts about regression and correlation
+\item Introduce the `lm` function
+\item Examining the effect of outliers
+\end{itemize}
+
+\section{Best Fitting Line: Buffalo Bills}
+
+The Buffalo Bills are a team in the National Football League based out of Buffalo, NY. To review a few points about regression, we'll consider the weight and height of the Buffalo Bills roster. First, let's read in the data and plot what it looks like.
+
+
+<<fig.width = 4, fig.height = 4, fig.align = 'center'>>=
+
+# This pulls the data set into R, and assigns it to the variable `buffaloBills`
+buffaloBills <- read.csv("buffaloBills.csv")
+@
+
+Let's take a look at what's in the data. We can use the \texttt{head} function to view the first few lines of our data. 
+
+
+<<fig.width = 4, fig.height = 4, fig.align = 'center'>>=
+# The buffaloBills variable stores a table which contains information about each player.
+#The 'head' command shows the first few lines of the table
+head(buffaloBills)
+
+# dim gets the size of the table
+dim(buffaloBills)
+
+
+@
+
+Given a table with multiple columns, we can use the \texttt{\$} operator to pull out specific columns. For example \texttt{buffaloBills\$Height} will return the \texttt{Height} column from \texttt{buffaloBills}. Notice for the \texttt{hist} command, we include the following arguments to label the plot (\texttt{main} is the main title, \texttt{ylab} is the label for the y-axis and \texttt{xlab} is the label for the x-axis). We can first view a histogram of the ''Height'' column which tells us how many times a specific number occured in our data set.
+
+<<fig.width = 5, fig.height = 4, fig.align = 'center'>>=
+# To reference a specific row in the table, you can use 
+# the dollar sign and then use the column name. Note that it is case sensitive
+buffaloBills$Height
+
+hist(buffaloBills$Height, main = "Histogram of Bills Height",
+     ylab = "Occurences", xlab = "Inches")
+@
+
+We can also grab specific elements of a vector using the the square brackets. 
+<<>>=
+# To access the first element of the Height column
+buffaloBills$Height[1]
+
+# To access the first 5 elements of the Height column
+buffaloBills$Height[c(1,2,3,4,5)]
+buffaloBills$Height[1:5]
+
+# To access the all elements except for the first 5 elements of the Height column
+buffaloBills$Height[-c(1,2,3,4,5)]
+
+# To access the 3rd row of the buffaloBills table
+buffaloBills[3, ]
+
+# To access the 4th column of the buffaloBills table
+buffaloBills[, 4]
+
+@
+
+
+
+Suppose I am interested in the line which best describes the relationship between height (x variable) and weight (y variable) for the current Buffalo Bills roster. Thus, my \textbf{population} of interest is the current Bills roster. Thus, in this case, I can actually calculate my \textbf{parameters} of interest, the $b_0$ and $b_1$ which minimize the sum of squared residuals, because I have access to the entire population (note this is typically not the case).
+
+We can use the \texttt{cov}, \texttt{var}, and \texttt{mean} functions to calculate the relevant sample quantities.
+<<>>=
+# Using the formulas from class
+b1 <- cov(buffaloBills$Weight, buffaloBills$Height) / var(buffaloBills$Height)
+b0 <- mean(buffaloBills$Weight) - b1 * mean(buffaloBills$Height)
+
+# Population parameters
+b0
+b1
+
+@
+So our estimated regression model would be
+\begin{equation}
+\text{Weight}_i = -730.2878 + 13.1725 \times \text{Height} + \epsilon_i
+\end{equation}
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item How should we interpret these parameters?
+\end{itemize}
+
+
+\vspace{1em}
+
+Using these values, we can create predictions for each player's weight based on their height. We can also calculate the residual and check that the sum of the residuals is 0 as we claimed in class. 
+<<>>=
+y.hat <- b0 + b1 * buffaloBills$Height
+residual <- buffaloBills$Weight - y.hat
+sum(residual)
+
+@
+
+
+Now let's check to see that these values of $b_0$ and $b_1$ actually mimimize the sum of squared errors 
+\begin{equation}
+\text{RSS} = \sum_i (y_i - \hat y_i)^2
+\end{equation}
+To do this, let's first calculate the RSS for our current estimates of $b_0$ and $b_1$
+<<>>=
+sum(residual^2)
+@
+
+Now let's take a quick eyeball at the plot, and select a value for $b_0$ and $b_1$ (pretend you don't know the actual values we just calculated). I've filled in a guess, but you should change the code to your own values for \texttt{b0.guess} and \texttt{b1.guess}
+
+<<>>=
+b0.guess <- -110
+b1.guess <- 5 
+y.hat.guess <- b0.guess + b1.guess * buffaloBills$Height
+residual.guess <- buffaloBills$Weight - y.hat.guess
+sum(residual.guess^2)
+@
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item What is the RSS for your ``guessed" values of $b_0$ and $b_1$?
+\item Is it less than the  for the least squares values of $b_0$ and $b_1$?
+\end{itemize}
+
+However, let's suppose I didn't have data for the full roster, but instead I needed to gather it myself. I ask Sean McDermott, the Bills Coach, and he says I can get the data from the players. However, since they're in the middle of the season and he doesn't want to distract the players, he says I can only ask 10 of the players, not the entire team. So I randomly select 10 players out of the 82 listed on the roster and get the following data. 
+
+To simulate this hypothetical situation happen, we first use the \texttt{sample} function which picks 10 random numbers between 1 and 82 (the number of players on the roster). Note that \texttt{c(1:82)} is shorthand for a vector containing all whole numbers between 1 and 82. 
+<<>>=
+players <- sample(c(1:82), size = 10)
+
+# Set of players we selected. This is will be our sample
+players
+buffaloBills[players, ]
+@
+
+We then fit a regression to the data from the 10 players selected. The 10 players that we would select is our \textbf{sample}, and the $\hat a$ and $\hat b$ we would get from only measuring 10 players are \textbf{statistics} which describe our sample.
+<<>>=
+b1.hat <- cov(buffaloBills$Weight[players], buffaloBills$Height[players]) / 
+  var(buffaloBills$Height[players])
+b0.hat <- mean(buffaloBills$Weight[players]) - b1.hat * mean(buffaloBills$Height[players])
+
+# The statistics we calculate from our sample
+b1.hat
+b0.hat
+@
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item Try this out yourself by running the code. You will get a different answer because your sample will probably be different from mine.
+\item How do these values differ from our parameters calculated above?
+\item Should I use the 'population values' from the Buffalo Bills roster to make predictions about the average American adult? Would you expect the `population values' for the American adult population be different?
+\end{itemize}
+
+Let's see how these values differ as we take many random samples. To do this, we will use a for loop which repeats a block of code. Each time it repeats the block, it sets  an index variable (in this case $i$) to the next value in the specified vector. We will repeat this procedure 500 times. We also create two vectors (record.b0 and record.b1) to record the estimates values of $\hat b_0$ and $\hat b_1$ for each sample  
+
+<<>>=
+sample.size <- 500
+record.b0 <- rep(0, sample.size)
+record.b1 <- rep(0, sample.size)
+
+### Test out to see how a for loop works
+# for(i in 1:5){
+#  print(i^2)
+# }
+
+for(i in c(1:sample.size)){
+  
+  # Set of players we selected. This is will be our sample
+  players <- sample(c(1:dim(buffaloBills)[1]), size = 10)
+  
+  # calculate the statistics
+  b1.hat <- cov(buffaloBills$Weight[players], buffaloBills$Height[players]) /
+    var(buffaloBills$Height[players])
+  
+  b0.hat <- mean(buffaloBills$Weight[players]) - b1.hat * mean(buffaloBills$Height[players])
+  
+  # record the statistics we calculate from our sample
+  record.b1[i] <- b1.hat
+  record.b0[i] <- b0.hat
+}
+@
+
+We can plot the distribution of the estimated $\hat b_1$ and $\hat b_0$ values and see that they vary with each sample around the true value of $b_1$ and $b_0$ we calculated above. The parameter values are indicated with the red vertical lines in the plots below.
+
+<<fig.width = 7, fig.height = 4, fig.align = 'center'>>=
+# this arranges the plots together so there is 1 row and 2 columns
+par(mfrow = c(1,2))
+
+hist(record.b0, main = "Estimated b0")
+abline(v = b0, col = "red")
+hist(record.b1, main = "Estimated b1")
+abline(v = b1, col = "red")
+@
+
+We can see that each random sample we take gives us a good estimate of the true values of $b_0$ and $b_1$, but $\hat b_0$ and $\hat b_1$ are different each time.
+
+
+\newpage
+\FloatBarrier
+
+
+\section{Linear Models with US Presidential Elections}
+In the 2000 US Presidential election with George Bush vs Al Gore, the entire election was decided by the state of Florida which itself was decided by less than 600 votes (a margin of .009\%). In particular, Palm Beach county used a butterfly ballot which was widely criticized for its confusing design. Many speculated that this may have caused a large number of voters who intended to vote for Al Gore to vote for Pat Buchanan (Reform Party) instead. 
+ 
+\begin{figure}[h]
+\centering
+\includegraphics[scale = .3]{butterfly}
+\caption{Confusing butterfly ballot}
+\end{figure}
+
+\FloatBarrier
+
+We would expect that the number of registered voters in 2000 who belonged to the Reform party should be a pretty good predictor of how many people ended up voting for Pat Buchanan. For each county in Florida, we have combined vote data from Wikipedia with data from the Florida Division of Elections on the party affiliation of the registered voters in 2000. The variable \texttt{Buch.Votes} is the number of votes cast for Pat Buchannan and \texttt{Reg.Reform} is the number of registered reform party voters. \texttt{Total.Reg} is the total number of registered voters in that county. 
+
+<<>>=
+florida <- read.csv("FL.csv")
+head(florida)
+@
+
+First, let's take a look at the distributions of registered reform party voters and votes for the reform party candidate Pat Buchannan. The red line in the plots below indicate the values for Palm County.
+
+<<fig.width = 8, fig.height = 4, fig.align = 'center'>>=
+par(mfrow = c(1,3))
+
+# Histogram of number of votes for Pat Buchannan
+hist(florida$Buch.Votes, main =  "Voters for Pat Buchannan by County")
+abline(v = florida$Buch.Votes[50], col = "red")
+
+# Histogram of total registered reform party voters
+hist(florida$Reg.Reform, main = "Registered Reform Party Voters")
+abline(v = florida$Reg.Reform[50], col = "red")
+
+# Normalize for the number of total registered voters
+hist(florida$Reg.Reform/florida$Total.Reg,
+     main = "Registered Reform Party Voters")
+abline(v = florida$Reg.Reform[50]/florida$Total.Reg[50], col = "red")
+@
+
+We can also plot the scatter plot, and use the \texttt{cor} function to calculate the sample correlation
+<<>>=
+plot(florida$Reg.Reform, florida$Buch.Votes,
+     xlab = "Registered Reform Party", ylab = "Votes for Buchannon",
+     main = "Florida 2000 Presidential Election")
+round(cor(florida$Reg.Reform, florida$Buch.Votes), 3)
+@
+
+\section{The \texttt{lm} function}
+
+In the previous example, we formed the estimates of $\hat b_0$ and $\hat b_1$ by hand. We can also use the \texttt{lm} function (lm stands for linear model) to do all the work for us. Let's take the output of lm and assign it to the variable \texttt{reression.model}. Inside the \texttt{lm} function, we've specified the formula we want the function to fit. The response variable (y) is on the left side of the $\sim$ (it should be located next to the number 1 on your keyboard). On the right hand side of the tilde, we put the explanatory variable. We also specify the data frame which contains the data of interest.
+
+Below, we calculate coefficients for the following model:
+\begin{equation}
+\text{votes for Buchannon}_i = b_0 + b_1 \text{number of registered reform party voters}_i + \epsilon_i
+\end{equation}
+
+<<>>=
+florida.regression = lm(Buch.Votes ~ Reg.Reform, data = florida)
+@
+
+
+We can get the fitted coefficients ($\hat b_0$ and $\hat b_1$) from the \texttt{florida.regression} object by using \texttt{\$coeff}. The first value is the y-intercept, and the second value is the coefficient on our explanatory variable (year.2004), which is denotes by $\hat b$ in the equation above. We can see that the values returned by \texttt{lm} are the same as the values we calculated above
+
+<<>>=
+florida.regression$coeff
+b0.hat <- florida.regression$coeff[1]
+b1.hat <- florida.regression$coeff[2]
+@
+
+We can calculate predicted values using the estimated coefficients. Alternatively, we can get the predicted (or fitted values) from the \texttt{lm} object `florida.regression'.
+<<>>=
+y.hat <- b0.hat + b1.hat * florida$Reg.Reform
+
+# check to see that the predicted values we formed are the same as the
+# lm object's fitted values (at least up to 10 digits)
+round(florida.regression$fitted.values - y.hat, 10)
+@
+
+In fact, the \texttt{lm} object has lots of information stored which we can access. To see, use the \texttt{names} function:
+<<>>=
+names(florida.regression)
+@
+
+Let's take a look at the observed values and the predicted values. To plot the line, we use the \texttt{abline} command which plots a line given the y-intercept (specified by the argument \texttt{a}) and the slope (specified by the argument \texttt{b}). It looks like the model fits relatively well.
+
+<<fig.width = 4, fig.height = 4, fig.align = 'center'>>=
+plot(florida$Reg.Reform, florida$Buch.Votes, main ="2000 Presidential Election Florida",
+     xlab = "Registered Reform Party Voters", ylab = "Actual Reform Party Votes")
+abline(a = b0.hat, b = b1.hat,
+       col = "red", lwd = 2)
+@
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item Does the line fit well? Does the relationship look mostly linear? 
+\item Are there any outliers?
+\end{itemize}
+
+As mentioned in class, the sum of the residuals should be 0. Let's check to make sure
+<<>>=
+# Calculate y.hat
+residual <- florida$Buch.Votes - y.hat
+
+#check that they agree with lm function
+round(florida.regression$residuals -residual, 10)
+
+sum(residual) 
+@
+
+We can also take a look at the distribution of the residuals.
+<<fig.width = 4, fig.height = 4, fig.align = 'center'>>=
+hist(residual)
+@
+
+It looks like there is one county with a large residual.
+<<fig.width = 4, fig.height = 4, fig.align = 'center'>>=
+plot(florida$Reg.Reform, florida$Buch.Votes,
+     main ="200 Presidential Election Florida Votes",
+     xlab = "Reform Party Reg. Voters", ylab = "Reform Party Votes")
+abline(a = b1.hat, b = b1.hat,
+       col = "blue", lwd = 2)
+
+segments(x0 = florida$Reg.Reform, y0 = florida$Buch.Votes,
+         x1 = florida$Reg.Reform, y1 = y.hat, col = "red", lty = 2)
+
+# get the name of the county with a large residual
+# which.max/which.min returns the index of the max/min value in the vector
+florida$County[which.max(abs(residual))]
+@
+
+
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item Does Palm County appear to be an outlier in the joint distribution? 
+\item Based on the number of registered voters belonging to the reform party in Palm County, what is the fitted the number of actual votes for Pat Buchanan to be?
+\item What is the residual for Palm County? (hint: Palm County is the 50th row in our data.frame)
+\end{itemize}
+
+
+There's a very useful function in \texttt{R} called \texttt{summary}, which we've already seen from last lab. We can also use ``summary" to our \texttt{regression.model} which gives us more information than just the raw output. Notice that it gives estimates for the coefficients, as well as standard errors for the coefficients. Recall in class that we said the estimated $\hat a$ and $\hat b$ are just estimates (statistics) of a parameter. The standard errors are rough estimates of how much our estimates might change if we took another sample. Recall the excercise above where we took samples of 10 Buffalo Bills players, and each sample gave a different result. The standard error is an estimate of the standard deviation of the histograms we were able to plot.
+
+<<>>=
+summary(florida.regression)
+@
+
+Let's view the effect of Palm county on the regression and fit another model to the new data. 
+
+
+<<>>=
+no.palm.county <- florida[-50, ]
+florida.regression.no.palm <- lm(Buch.Votes~Reg.Reform, data = no.palm.county)
+summary(florida.regression.no.palm)
+@
+
+Let's view the predicted vs observed values without Palm county. Here we can see that the line seems to fit the data much better than before.
+<<fig.width = 6, fig.height = 4, fig.align = 'center'>>=
+plot(x = no.palm.county$Reg.Reform,
+     y = no.palm.county$Buch.Votes,
+     main = "Registered Voters vs Actual Votes (No Palm County)",
+     xlab = "Registered Reform Voters", ylab = "Actual Votes")
+
+
+abline(a = florida.regression.no.palm$coefficients[1],
+       b =  florida.regression.no.palm$coefficients[2], col = "red")
+@
+
+\subsubsection*{Questions}
+\begin{itemize}
+\item How would we interpret the estimated coefficients from the regression output? 
+\item Using this model, what is the predicted number of votes for Buchanan in Palm County? What is the prediction error? (Note this is similar, but not a residual because we did not use Palm County to fit our model)
+\item Compare the estimated values for this model with the estimated values of the previous model
+\item So which model is ``correct"? The answer depends on how we define ``correct," but if you had to predict the number of votes in each Florida county for the reform party candidate in this upcoming 2024 election, which model would you use? Why?
+\end{itemize}
+
+\end{document}
