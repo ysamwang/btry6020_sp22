@@ -49,7 +49,7 @@
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
 \usepackage{alltt}
-\usepackage[margin = 1in]{geometry}
+\usepackage[margin = 2cm]{geometry}
 \usepackage{hyperref}
 \usepackage[parfill]{parskip}
 \usepackage{amsfonts, amsmath}
@@ -78,8 +78,18 @@ The Buffalo Bills are a team in the National Football League based out of Buffal
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
+\hlcom{## package which allows you to pull files directly from github}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"readr"}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Installing package into '/home/ysw7/R/x86\_64-pc-linux-gnu-library/4.1'\\\#\# (as 'lib' is unspecified)}}\begin{alltt}
+\hlkwd{library}\hlstd{(}\hlstr{"readr"}\hlstd{)}
+
+\hlstd{fileName} \hlkwb{<-} \hlstr{"https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lab1/buffaloBills.csv"}
+
 \hlcom{# This pulls the data set into R, and assigns it to the variable `buffaloBills`}
-\hlstd{buffaloBills} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{"buffaloBills.csv"}\hlstd{)}
+\hlstd{buffaloBills} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlkwd{url}\hlstd{(fileName))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
@@ -300,23 +310,23 @@ To simulate this hypothetical situation happen, we first use the \texttt{sample}
 \hlstd{players}
 \end{alltt}
 \begin{verbatim}
-##  [1] 22 40 59  1 44 11 29 35 42 33
+##  [1] 76 36 57 64 56 59 42 29 54 48
 \end{verbatim}
 \begin{alltt}
 \hlstd{buffaloBills[players, ]}
 \end{alltt}
 \begin{verbatim}
-##              Player Number Position Height Weight Experience            College
-## 22     Damar Hamlin     31      SAF     72    200          0         Pittsburgh
-## 40       Siran Neal     33       DB     72    206          4 Jacksonville State
-## 59    Tanner Gentry     87       WR     74    209          1            Wyoming
-## 1     Mario Addison     97       DE     75    260         11               Troy
-## 44     Jordan Poyer     21       FS     72    191          9       Oregon State
-## 11     Dion Dawkins     73       OT     77    320          5             Temple
-## 29     Taiwan Jones     25       RB     72    195         11 Eastern Washington
-## 35 Tyler Matakevich     44      ILB     73    235          6             Temple
-## 42        Ed Oliver     91       DT     73    287          3            Houston
-## 33        Cam Lewis     47       CB     69    183          2            Buffalo
+##             Player Number Position Height Weight Experience            College
+## 76   Justin Zimmer     61       DT     75    300          3       Ferris State
+## 36 Isaiah McKenzie     19       WR     68    173          5            Georgia
+## 57  Brandin Bryant     90       DT     74    305          1   Florida Atlantic
+## 64  Isaiah Hodgins     16       WR     75    201          2       Oregon State
+## 56       Eli Ankou     51       NT     75    325          5               UCLA
+## 59   Tanner Gentry     87       WR     74    209          1            Wyoming
+## 42       Ed Oliver     91       DT     73    287          3            Houston
+## 29    Taiwan Jones     25       RB     72    195         11 Eastern Washington
+## 54   Austin Proehl     NA       WR     70    175          1     North Carolina
+## 48     Andre Smith     59       LB     72    240          4     North Carolina
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -333,13 +343,13 @@ We then fit a regression to the data from the 10 players selected. The 10 player
 \hlstd{b1.hat}
 \end{alltt}
 \begin{verbatim}
-## [1] 17.44743
+## [1] 16.59274
 \end{verbatim}
 \begin{alltt}
 \hlstd{b0.hat}
 \end{alltt}
 \begin{verbatim}
-## [1] -1043.318
+## [1] -966.9516
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -429,7 +439,11 @@ We would expect that the number of registered voters in 2000 who belonged to the
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{florida} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{"FL.csv"}\hlstd{)}
+\hlstd{fileName} \hlkwb{<-} \hlstr{"https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lab1/FL.csv"}
+
+\hlcom{# This pulls the data set into R, and assigns it to the variable `buffaloBills`}
+\hlstd{florida} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlkwd{url}\hlstd{(fileName))}
+
 \hlkwd{head}\hlstd{(florida)}
 \end{alltt}
 \begin{verbatim}

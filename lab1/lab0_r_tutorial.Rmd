@@ -1,0 +1,175 @@
+
+
+<div align="center">
+<pre><code><h2><b>BTRY 6020</b></h2></code></pre>
+<pre><code><h2><b>Lab 0: Basics and Introduction to R</b></h2></code></pre>
+<pre><code><h3>Sp 2022</h3></code></pre>
+</div>
+
+### Downloading and installing R and Rstudio
+
+To get started, we first need to install the R interpreter on our computers. R is an open source (meaining free of charge) statistical software that is widely used in academia and industry.
+
+The software can be downloaded at-
+
+https://cran.r-project.org/
+
+We will also be using Rstudio, which provides a convenient interface for interacting with the R environment. Rstudio can be downloaded at-
+
+https://www.rstudio.com/products/rstudio/download/
+
+Install R first, then Rstudio. For more detailed reading about R, a few good resources are listed below-
+
+http://www.r-tutor.com/r-introduction
+
+http://www.cyclismo.org/tutorial/R/
+
+
+### Introduction
+
+The following examples and exercises should give you a first look at what R does and how it works. 
+
+R is a command-line program, which just means commands are entered line-by-line at the prompt. Being a programming language it is very finicky. Everything has to be entered just right - including case-sensitivity.
+
+There are two ways of entering commands: Either typing them out carefully into the "Console Window" (the lower-left window in Rstudio) and hitting `Enter`.  The alternative approach is to write and edit lines in the script window (upper-left window in Rstudio), and "passing" the code into the console by hitting `Ctrl-Enter` or clicking the `Run` icon.
+
+For the most part, we will be only doing single commands and the command window is sufficient.  But in general, it is smarter to do all of your coding in a script window, and then save the raw code file as a text document, which you can revisit and re-run at any point later. 
+
+### R is a calculator
+
+```{r}
+1+2
+3^6
+sqrt((20-19)^2 + (19-19)^2 + (19-18)^2)/2
+12345*54312
+```
+
+and so on. 
+
+
+### Assigning variable names
+
+The assignment operator is `<-`. It's supposed to look like an arrow pointing left.
+
+```{r}
+X <- 5  	# X "gets" 5
+```
+Notice that using the assignment operator sets the value of `X` but doesn't print any output.  To see what X is, you
+need to type
+```{r}
+X
+```
+
+Notice also that `X` now appears in the upper-right panel of Rstudio, letting you know that there is now an object in memory called `X`. 
+
+Now you can use `X` as if it were a number
+```{r}
+X*2
+X^X
+``` 
+
+Note that variables must start with a character.
+```{r}
+Fred <- 5
+Nancy <- Fred*2
+Fred + Nancy
+```
+
+### Rounding
+
+```{r}
+x <- sqrt((20-19)^2 + (19-19)^2 + (19-18)^2)/2
+x
+round(x, 2)
+round(x, 3)
+```
+
+### Vectors
+
+Obviously, `X` can be many things more than just a single number.  Another simple object in R is a "vector", which is a series of numbers (and therefore resembles "data").  We create it as follows:
+```{r}
+X <- c(3,4,5)  	# sets X equal to the vector (3,4,5)
+X
+Y <- c(1:10)    # sequence of numbers from 1-10
+Y
+```
+
+`c()` is a function - a very very useful function that creates "vectors". In all functions, arguments are passed within parentheses. 
+
+Now, let's do some arithmetic with this vector:
+```{r}
+X + 1
+X*2
+X^2
+((X+X^2/2)/X)^2
+```
+
+Note that in all of these cases, the arithmetic operations are performed on a term-by-term basis.
+
+You can also make a vector of character strings:
+
+```{r}
+characterNames <- c("Leslie", "Ron", "April", "Andy", "Tom", "Ben", "Donna", "Jerry")
+characterNames
+```
+
+We can sort the characters (or numbers) using the sort function-
+```{r}
+### note that we need to be careful about cases
+# sort(names) does not work
+
+sort(characterNames)
+```
+### Exercise: 
+<font color='blue'>
+
+Make a vector called `me` that contains, in order, the number of people living in your house/apartment/dorm suite, the number of pets you have ever had, your age, and your shoesize.
+
+```{r}
+me <- c(3, 4, 55, 10)
+```
+</font>
+
+### Vectors and Functions
+
+Now that we have some data, we can study them with simple functions:
+
+```{r}
+me
+sum(me)
+length(me)
+```
+
+
+You can learn more about how functions work by using "?", e.g. `?sum`, `?length`.
+
+A help window will appear (in the lower right panel in Rstudio) with all sorts of information (only occasionally useful) about the functions.  Often, there are some useful examples at the bottom of the help window.
+
+### Exercise: 
+<font color='blue'>
+ Create an object called `n` which is the length of your vector `me`, and use that object with the `sum()` function to calculate the arithmetic mean of your data.
+
+ **Follow-up:**
+Try applying the `mean()` function to the vector `me`.  Does it agree with your calculation above?
+</font>
+
+### Plotting
+
+It is easy (but not very interesting) to plot the vector `me`:
+```{r, fig.height=4, message=FALSE, caption=""}
+plot(me)
+```
+
+Notice that the figure appears in the lower right panel of the RStudio screen.  Try using the "Zoom" command in the Plot tab command bar.
+
+A "barplot" might be a little nicer:
+
+```{r, fig.height=4, caption=""}
+barplot(me)
+```
+
+And we can give labels to the barplot by adding a `names` "argument" (note, that "argument" refers to any information that you give to a function).
+
+```{r, fig.height=4, caption=""}
+barplot(me, names=c("Roomates", "Pets", "Age", "Shoesize"))
+```

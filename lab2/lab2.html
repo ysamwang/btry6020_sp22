@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://bookdown.org/yihui/rmarkdown/markdown-syntax.html -->
+<html lang="" xml:lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2.5 Markdown syntax | R Markdown: The Definitive Guide</title>
+  <meta name="description" content="The first official book authored by the core R Markdown developers that provides a comprehensive and accurate reference to the R Markdown ecosystem. With R Markdown, you can easily create reproducible data analysis reports, presentations, dashboards, interactive applications, books, dissertations, websites, and journal articles, while enjoying the simplicity of Markdown and the great power of R and other languages.">
+  <meta name="generator" content="bookdown 0.21.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="2.5 Markdown syntax | R Markdown: The Definitive Guide">
+  <meta property="og:type" content="book">
+  <meta property="og:url" content="https://bookdown.org/yihui/rmarkdown/">
+  <meta property="og:image" content="https://bookdown.org/yihui/rmarkdown//images/cover.png">
+  <meta property="og:description" content="The first official book authored by the core R Markdown developers that provides a comprehensive and accurate reference to the R Markdown ecosystem. With R Markdown, you can easily create reproducible data analysis reports, presentations, dashboards, interactive applications, books, dissertations, websites, and journal articles, while enjoying the simplicity of Markdown and the great power of R and other languages.">
+  <meta name="github-repo" content="rstudio/rmarkdown-book">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2.5 Markdown syntax | R Markdown: The Definitive Guide">
+  
+  <meta name="twitter:description" content="The first official book authored by the core R Markdown developers that provides a comprehensive and accurate reference to the R Markdown ecosystem. With R Markdown, you can easily create reproducible data analysis reports, presentations, dashboards, interactive applications, books, dissertations, websites, and journal articles, while enjoying the simplicity of Markdown and the great power of R and other languages.">
+  <meta name="twitter:image" content="https://bookdown.org/yihui/rmarkdown//images/cover.png">
+
+<meta name="author" content="Yihui Xie, J. J. Allaire, Garrett Grolemund">
+
+
+<meta name="date" content="2021-04-09">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="https://bookdown.org/yihui/rmarkdown/output-formats.html">
+<link rel="next" href="https://bookdown.org/yihui/rmarkdown/r-code.html">
+<script src="./lab2_files/header-attrs.js"></script>
+<script src="./lab2_files/jquery.min.js"></script>
+<link href="./lab2_files/style.css" rel="stylesheet">
+<link href="./lab2_files/plugin-table.css" rel="stylesheet">
+<link href="./lab2_files/plugin-bookdown.css" rel="stylesheet">
+<link href="./lab2_files/plugin-highlight.css" rel="stylesheet">
+<link href="./lab2_files/plugin-search.css" rel="stylesheet">
+<link href="./lab2_files/plugin-fontsettings.css" rel="stylesheet">
+<link href="./lab2_files/plugin-clipboard.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<link href="./lab2_files/anchor-sections.css" rel="stylesheet">
+<script src="./lab2_files/anchor-sections.js"></script>
+<script src="./lab2_files/htmlwidgets.js"></script>
+<script src="./lab2_files/sigma.min.js"></script>
+<script src="./lab2_files/sigma.parsers.gexf.min.js"></script>
+<script src="./lab2_files/sigma.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="./lab2_files/style(1).css" type="text/css">
+<script type="text/javascript" src="./lab2_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.mjx-chartest .mjx-char {display: inline}
+.mjx-chartest .mjx-box {padding-top: 1000px}
+.MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MJXc-processed {display: none}
+.mjx-test {display: block; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.mjx-ex-box-test {position: absolute; overflow: hidden; width: 1px; height: 60ex}
+.mjx-line-box-test {display: table!important}
+.mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+#MathJax_CHTML_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+.MJXc-TeX-vec-R {font-family: MJXc-TeX-vec-R,MJXc-TeX-vec-Rw}
+.MJXc-TeX-vec-B {font-family: MJXc-TeX-vec-B,MJXc-TeX-vec-Bx,MJXc-TeX-vec-Bw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-R; src: local('MathJax_Vector'), local('MathJax_Vector-Regular')}
+@font-face {font-family: MJXc-TeX-vec-Rw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Regular.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Regular.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-B; src: local('MathJax_Vector Bold'), local('MathJax_Vector-Bold')}
+@font-face {font-family: MJXc-TeX-vec-Bx; src: local('MathJax_Vector'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-vec-Bw; src /*1*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Bold.eot'); src /*2*/: url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Bold.woff') format('woff'), url('https://mathjax.rstudio.com/latest/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Bold.otf') format('opentype')}
+</style></head>
+
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+
+
+  <div class="book without-animation with-summary   font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary"><div class="book-search" role="search"><label for="search-box" aria-hidden="false" hidden="hidden">Type to search</label><input id="search-box" type="search" class="form-control" placeholder="Type to search (Enter for navigation)" title="Use Enter or the &lt;Down&gt; key to navigate to the next match, or the &lt;Up&gt; key to the previous match"></div>
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="https://bookdown.org/yihui/rmarkdown/index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-read-this-book.html"><a href="https://bookdown.org/yihui/rmarkdown/how-to-read-this-book.html"><i class="fa fa-check"></i>How to read this book</a></li>
+<li class="chapter" data-level="" data-path="structure-of-the-book.html"><a href="https://bookdown.org/yihui/rmarkdown/structure-of-the-book.html"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="software-info.html"><a href="https://bookdown.org/yihui/rmarkdown/software-info.html" title="Software information and conventions"><i class="fa fa-check"></i>Software information and conventions</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="https://bookdown.org/yihui/rmarkdown/acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="https://bookdown.org/yihui/rmarkdown/author.html"><i class="fa fa-check"></i>About the Authors</a>
+<ul>
+<li class="chapter" data-level="" data-path="yihui-xie.html"><a href="https://bookdown.org/yihui/rmarkdown/yihui-xie.html"><i class="fa fa-check"></i>Yihui Xie</a></li>
+<li class="chapter" data-level="" data-path="j-j-allaire.html"><a href="https://bookdown.org/yihui/rmarkdown/j-j-allaire.html"><i class="fa fa-check"></i>J.J. Allaire</a></li>
+<li class="chapter" data-level="" data-path="garrett-grolemund.html"><a href="https://bookdown.org/yihui/rmarkdown/garrett-grolemund.html"><i class="fa fa-check"></i>Garrett Grolemund</a></li>
+</ul></li>
+<li class="part"><span><b>I Get Started</b></span></li>
+<li class="chapter" data-level="1" data-path="installation.html"><a href="https://bookdown.org/yihui/rmarkdown/installation.html"><i class="fa fa-check"></i><b>1</b> Installation</a></li>
+<li class="chapter" data-level="2" data-path="basics.html"><a href="https://bookdown.org/yihui/rmarkdown/basics.html"><i class="fa fa-check"></i><b>2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html"><i class="fa fa-check"></i><b>2.1</b> Example applications</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#airbnbs-knowledge-repository" title="2.1.1 Airbnb’s knowledge repository"><i class="fa fa-check"></i><b>2.1.1</b> Airbnb’s knowledge repository</a></li>
+<li class="chapter" data-level="2.1.2" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#homework-assignments-on-rpubs" title="2.1.2 Homework assignments on RPubs"><i class="fa fa-check"></i><b>2.1.2</b> Homework assignments on RPubs</a></li>
+<li class="chapter" data-level="2.1.3" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#personalized-mail"><i class="fa fa-check"></i><b>2.1.3</b> Personalized mail</a></li>
+<li class="chapter" data-level="2.1.4" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#employer-health-benefits-survey" title="2.1.4 2017 Employer Health Benefits Survey"><i class="fa fa-check"></i><b>2.1.4</b> 2017 Employer Health Benefits Survey</a></li>
+<li class="chapter" data-level="2.1.5" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#examples-journal"><i class="fa fa-check"></i><b>2.1.5</b> Journal articles</a></li>
+<li class="chapter" data-level="2.1.6" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#dashboards-at-eelloo"><i class="fa fa-check"></i><b>2.1.6</b> Dashboards at eelloo</a></li>
+<li class="chapter" data-level="2.1.7" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#examples-books"><i class="fa fa-check"></i><b>2.1.7</b> Books</a></li>
+<li class="chapter" data-level="2.1.8" data-path="basics-examples.html"><a href="https://bookdown.org/yihui/rmarkdown/basics-examples.html#examples-websites"><i class="fa fa-check"></i><b>2.1.8</b> Websites</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="compile.html"><a href="https://bookdown.org/yihui/rmarkdown/compile.html" title="2.2 Compile an R Markdown document"><i class="fa fa-check"></i><b>2.2</b> Compile an R Markdown document</a></li>
+<li class="chapter" data-level="2.3" data-path="cheat-sheets.html"><a href="https://bookdown.org/yihui/rmarkdown/cheat-sheets.html"><i class="fa fa-check"></i><b>2.3</b> Cheat sheets</a></li>
+<li class="chapter" data-level="2.4" data-path="output-formats.html"><a href="https://bookdown.org/yihui/rmarkdown/output-formats.html"><i class="fa fa-check"></i><b>2.4</b> Output formats</a></li>
+<li class="chapter" data-level="2.5" data-path="markdown-syntax.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html"><i class="fa fa-check"></i><b>2.5</b> Markdown syntax</a>
+<ul>
+<li class="chapter active" data-level="2.5.1" data-path="markdown-syntax.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting"><i class="fa fa-check"></i><b>2.5.1</b> Inline formatting</a></li>
+<li class="chapter" data-level="2.5.2" data-path="markdown-syntax.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#block-level-elements"><i class="fa fa-check"></i><b>2.5.2</b> Block-level elements</a></li>
+<li class="chapter" data-level="2.5.3" data-path="markdown-syntax.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#math-expressions"><i class="fa fa-check"></i><b>2.5.3</b> Math expressions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-code.html"><a href="https://bookdown.org/yihui/rmarkdown/r-code.html" title="2.6 R code chunks and inline R code"><i class="fa fa-check"></i><b>2.6</b> R code chunks and inline R code</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-code.html"><a href="https://bookdown.org/yihui/rmarkdown/r-code.html#figures"><i class="fa fa-check"></i><b>2.6.1</b> Figures</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-code.html"><a href="https://bookdown.org/yihui/rmarkdown/r-code.html#tables"><i class="fa fa-check"></i><b>2.6.2</b> Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html"><i class="fa fa-check"></i><b>2.7</b> Other language engines</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#python"><i class="fa fa-check"></i><b>2.7.1</b> Python</a></li>
+<li class="chapter" data-level="2.7.2" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#shell-scripts"><i class="fa fa-check"></i><b>2.7.2</b> Shell scripts</a></li>
+<li class="chapter" data-level="2.7.3" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#sql"><i class="fa fa-check"></i><b>2.7.3</b> SQL</a></li>
+<li class="chapter" data-level="2.7.4" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#rcpp"><i class="fa fa-check"></i><b>2.7.4</b> Rcpp</a></li>
+<li class="chapter" data-level="2.7.5" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#stan"><i class="fa fa-check"></i><b>2.7.5</b> Stan</a></li>
+<li class="chapter" data-level="2.7.6" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#javascript-and-css"><i class="fa fa-check"></i><b>2.7.6</b> JavaScript and CSS</a></li>
+<li class="chapter" data-level="2.7.7" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#julia"><i class="fa fa-check"></i><b>2.7.7</b> Julia</a></li>
+<li class="chapter" data-level="2.7.8" data-path="language-engines.html"><a href="https://bookdown.org/yihui/rmarkdown/language-engines.html#c-and-fortran"><i class="fa fa-check"></i><b>2.7.8</b> C and Fortran</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="interactive-documents.html"><a href="https://bookdown.org/yihui/rmarkdown/interactive-documents.html"><i class="fa fa-check"></i><b>2.8</b> Interactive documents</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="interactive-documents.html"><a href="https://bookdown.org/yihui/rmarkdown/interactive-documents.html#intro-widgets"><i class="fa fa-check"></i><b>2.8.1</b> HTML widgets</a></li>
+<li class="chapter" data-level="2.8.2" data-path="interactive-documents.html"><a href="https://bookdown.org/yihui/rmarkdown/interactive-documents.html#intro-shiny"><i class="fa fa-check"></i><b>2.8.2</b> Shiny documents</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Output Formats</b></span></li>
+<li class="chapter" data-level="3" data-path="documents.html"><a href="https://bookdown.org/yihui/rmarkdown/documents.html"><i class="fa fa-check"></i><b>3</b> Documents</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html"><i class="fa fa-check"></i><b>3.1</b> HTML document</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#table-of-contents"><i class="fa fa-check"></i><b>3.1.1</b> Table of contents</a></li>
+<li class="chapter" data-level="3.1.2" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#section-numbering"><i class="fa fa-check"></i><b>3.1.2</b> Section numbering</a></li>
+<li class="chapter" data-level="3.1.3" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#tabbed-sections"><i class="fa fa-check"></i><b>3.1.3</b> Tabbed sections</a></li>
+<li class="chapter" data-level="3.1.4" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#appearance-and-style"><i class="fa fa-check"></i><b>3.1.4</b> Appearance and style</a></li>
+<li class="chapter" data-level="3.1.5" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#figure-options"><i class="fa fa-check"></i><b>3.1.5</b> Figure options</a></li>
+<li class="chapter" data-level="3.1.6" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#data-frame-printing"><i class="fa fa-check"></i><b>3.1.6</b> Data frame printing</a></li>
+<li class="chapter" data-level="3.1.7" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding"><i class="fa fa-check"></i><b>3.1.7</b> Code folding</a></li>
+<li class="chapter" data-level="3.1.8" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#mathjax-equations"><i class="fa fa-check"></i><b>3.1.8</b> MathJax equations</a></li>
+<li class="chapter" data-level="3.1.9" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#document-dependencies"><i class="fa fa-check"></i><b>3.1.9</b> Document dependencies</a></li>
+<li class="chapter" data-level="3.1.10" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#advanced-customization"><i class="fa fa-check"></i><b>3.1.10</b> Advanced customization</a></li>
+<li class="chapter" data-level="3.1.11" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#shared-options"><i class="fa fa-check"></i><b>3.1.11</b> Shared options</a></li>
+<li class="chapter" data-level="3.1.12" data-path="html-document.html"><a href="https://bookdown.org/yihui/rmarkdown/html-document.html#html-fragments"><i class="fa fa-check"></i><b>3.1.12</b> HTML fragments</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="notebook.html"><a href="https://bookdown.org/yihui/rmarkdown/notebook.html"><i class="fa fa-check"></i><b>3.2</b> Notebook</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="notebook.html"><a href="https://bookdown.org/yihui/rmarkdown/notebook.html#using-notebooks"><i class="fa fa-check"></i><b>3.2.1</b> Using Notebooks</a></li>
+<li class="chapter" data-level="3.2.2" data-path="notebook.html"><a href="https://bookdown.org/yihui/rmarkdown/notebook.html#saving-and-sharing"><i class="fa fa-check"></i><b>3.2.2</b> Saving and sharing</a></li>
+<li class="chapter" data-level="3.2.3" data-path="notebook.html"><a href="https://bookdown.org/yihui/rmarkdown/notebook.html#notebook-format"><i class="fa fa-check"></i><b>3.2.3</b> Notebook format</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html"><i class="fa fa-check"></i><b>3.3</b> PDF document</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#table-of-contents-1"><i class="fa fa-check"></i><b>3.3.1</b> Table of contents</a></li>
+<li class="chapter" data-level="3.3.2" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#figure-options-1"><i class="fa fa-check"></i><b>3.3.2</b> Figure options</a></li>
+<li class="chapter" data-level="3.3.3" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#data-frame-printing-1"><i class="fa fa-check"></i><b>3.3.3</b> Data frame printing</a></li>
+<li class="chapter" data-level="3.3.4" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#syntax-highlighting"><i class="fa fa-check"></i><b>3.3.4</b> Syntax highlighting</a></li>
+<li class="chapter" data-level="3.3.5" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-options"><i class="fa fa-check"></i><b>3.3.5</b> LaTeX options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#latex-packages-for-citations" title="3.3.6 LaTeX packages for citations"><i class="fa fa-check"></i><b>3.3.6</b> LaTeX packages for citations</a></li>
+<li class="chapter" data-level="3.3.7" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#advanced-customization-1"><i class="fa fa-check"></i><b>3.3.7</b> Advanced customization</a></li>
+<li class="chapter" data-level="3.3.8" data-path="pdf-document.html"><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html#other-features"><i class="fa fa-check"></i><b>3.3.8</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="word-document.html"><a href="https://bookdown.org/yihui/rmarkdown/word-document.html"><i class="fa fa-check"></i><b>3.4</b> Word document</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="word-document.html"><a href="https://bookdown.org/yihui/rmarkdown/word-document.html#other-features-1"><i class="fa fa-check"></i><b>3.4.1</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="opendocument-text-document.html"><a href="https://bookdown.org/yihui/rmarkdown/opendocument-text-document.html"><i class="fa fa-check"></i><b>3.5</b> OpenDocument Text document</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="opendocument-text-document.html"><a href="https://bookdown.org/yihui/rmarkdown/opendocument-text-document.html#other-features-2"><i class="fa fa-check"></i><b>3.5.1</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="rich-text-format-document.html"><a href="https://bookdown.org/yihui/rmarkdown/rich-text-format-document.html"><i class="fa fa-check"></i><b>3.6</b> Rich Text Format document</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="rich-text-format-document.html"><a href="https://bookdown.org/yihui/rmarkdown/rich-text-format-document.html#other-features-3"><i class="fa fa-check"></i><b>3.6.1</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="markdown-document.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-document.html"><i class="fa fa-check"></i><b>3.7</b> Markdown document</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="markdown-document.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-document.html#markdown-variants"><i class="fa fa-check"></i><b>3.7.1</b> Markdown variants</a></li>
+<li class="chapter" data-level="3.7.2" data-path="markdown-document.html"><a href="https://bookdown.org/yihui/rmarkdown/markdown-document.html#other-features-4"><i class="fa fa-check"></i><b>3.7.2</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="r-package-vignette.html"><a href="https://bookdown.org/yihui/rmarkdown/r-package-vignette.html"><i class="fa fa-check"></i><b>3.8</b> R package vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="presentations.html"><a href="https://bookdown.org/yihui/rmarkdown/presentations.html"><i class="fa fa-check"></i><b>4</b> Presentations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html"><i class="fa fa-check"></i><b>4.1</b> ioslides presentation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#display-modes"><i class="fa fa-check"></i><b>4.1.1</b> Display modes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#incremental-bullets"><i class="fa fa-check"></i><b>4.1.2</b> Incremental bullets</a></li>
+<li class="chapter" data-level="4.1.3" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#visual-appearance"><i class="fa fa-check"></i><b>4.1.3</b> Visual appearance</a></li>
+<li class="chapter" data-level="4.1.4" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#code-highlighting"><i class="fa fa-check"></i><b>4.1.4</b> Code highlighting</a></li>
+<li class="chapter" data-level="4.1.5" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#adding-a-logo"><i class="fa fa-check"></i><b>4.1.5</b> Adding a logo</a></li>
+<li class="chapter" data-level="4.1.6" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#tables-1"><i class="fa fa-check"></i><b>4.1.6</b> Tables</a></li>
+<li class="chapter" data-level="4.1.7" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#advanced-layout"><i class="fa fa-check"></i><b>4.1.7</b> Advanced layout</a></li>
+<li class="chapter" data-level="4.1.8" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#text-color"><i class="fa fa-check"></i><b>4.1.8</b> Text color</a></li>
+<li class="chapter" data-level="4.1.9" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#presenter-mode"><i class="fa fa-check"></i><b>4.1.9</b> Presenter mode</a></li>
+<li class="chapter" data-level="4.1.10" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#printing-and-pdf-output"><i class="fa fa-check"></i><b>4.1.10</b> Printing and PDF output</a></li>
+<li class="chapter" data-level="4.1.11" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#custom-templates-2"><i class="fa fa-check"></i><b>4.1.11</b> Custom templates</a></li>
+<li class="chapter" data-level="4.1.12" data-path="ioslides-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html#other-features-5"><i class="fa fa-check"></i><b>4.1.12</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="slidy-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html"><i class="fa fa-check"></i><b>4.2</b> Slidy presentation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="slidy-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html#display-modes-1"><i class="fa fa-check"></i><b>4.2.1</b> Display modes</a></li>
+<li class="chapter" data-level="4.2.2" data-path="slidy-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html#text-size"><i class="fa fa-check"></i><b>4.2.2</b> Text size</a></li>
+<li class="chapter" data-level="4.2.3" data-path="slidy-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html#footer-elements"><i class="fa fa-check"></i><b>4.2.3</b> Footer elements</a></li>
+<li class="chapter" data-level="4.2.4" data-path="slidy-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html#other-features-6"><i class="fa fa-check"></i><b>4.2.4</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="beamer-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html"><i class="fa fa-check"></i><b>4.3</b> Beamer presentation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="beamer-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html#themes"><i class="fa fa-check"></i><b>4.3.1</b> Themes</a></li>
+<li class="chapter" data-level="4.3.2" data-path="beamer-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html#slide-level"><i class="fa fa-check"></i><b>4.3.2</b> Slide level</a></li>
+<li class="chapter" data-level="4.3.3" data-path="beamer-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html#other-features-7"><i class="fa fa-check"></i><b>4.3.3</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="powerpoint-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html"><i class="fa fa-check"></i><b>4.4</b> PowerPoint presentation</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="powerpoint-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html#ppt-templates"><i class="fa fa-check"></i><b>4.4.1</b> Custom templates</a></li>
+<li class="chapter" data-level="4.4.2" data-path="powerpoint-presentation.html"><a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html#other-features-8"><i class="fa fa-check"></i><b>4.4.2</b> Other features</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Extensions</b></span></li>
+<li class="chapter" data-level="5" data-path="dashboards.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboards.html"><i class="fa fa-check"></i><b>5</b> Dashboards</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="layout.html"><a href="https://bookdown.org/yihui/rmarkdown/layout.html"><i class="fa fa-check"></i><b>5.1</b> Layout</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="layout.html"><a href="https://bookdown.org/yihui/rmarkdown/layout.html#row-based-layouts"><i class="fa fa-check"></i><b>5.1.1</b> Row-based layouts</a></li>
+<li class="chapter" data-level="5.1.2" data-path="layout.html"><a href="https://bookdown.org/yihui/rmarkdown/layout.html#attributes-on-sections"><i class="fa fa-check"></i><b>5.1.2</b> Attributes on sections</a></li>
+<li class="chapter" data-level="5.1.3" data-path="layout.html"><a href="https://bookdown.org/yihui/rmarkdown/layout.html#multiple-pages"><i class="fa fa-check"></i><b>5.1.3</b> Multiple pages</a></li>
+<li class="chapter" data-level="5.1.4" data-path="layout.html"><a href="https://bookdown.org/yihui/rmarkdown/layout.html#story-boards"><i class="fa fa-check"></i><b>5.1.4</b> Story boards</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dashboard-components.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboard-components.html"><i class="fa fa-check"></i><b>5.2</b> Components</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="dashboard-components.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboard-components.html#value-boxes"><i class="fa fa-check"></i><b>5.2.1</b> Value boxes</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dashboard-components.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboard-components.html#gauges"><i class="fa fa-check"></i><b>5.2.2</b> Gauges</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dashboard-components.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboard-components.html#text-annotations"><i class="fa fa-check"></i><b>5.2.3</b> Text annotations</a></li>
+<li class="chapter" data-level="5.2.4" data-path="dashboard-components.html"><a href="https://bookdown.org/yihui/rmarkdown/dashboard-components.html#navigation-bar"><i class="fa fa-check"></i><b>5.2.4</b> Navigation bar</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny.html"><i class="fa fa-check"></i><b>5.3</b> Shiny</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny.html#getting-started"><i class="fa fa-check"></i><b>5.3.1</b> Getting started</a></li>
+<li class="chapter" data-level="5.3.2" data-path="shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny.html#a-shiny-dashboard-example" title="5.3.2 A Shiny dashboard example"><i class="fa fa-check"></i><b>5.3.2</b> A Shiny dashboard example</a></li>
+<li class="chapter" data-level="5.3.3" data-path="shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny.html#input-sidebar"><i class="fa fa-check"></i><b>5.3.3</b> Input sidebar</a></li>
+<li class="chapter" data-level="5.3.4" data-path="shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny.html#learning-more"><i class="fa fa-check"></i><b>5.3.4</b> Learning more</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tufte-handouts.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-handouts.html"><i class="fa fa-check"></i><b>6</b> Tufte Handouts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tufte-headings.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-headings.html"><i class="fa fa-check"></i><b>6.1</b> Headings</a></li>
+<li class="chapter" data-level="6.2" data-path="tufte-figures.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-figures.html"><i class="fa fa-check"></i><b>6.2</b> Figures</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="tufte-figures.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-figures.html#margin-figures"><i class="fa fa-check"></i><b>6.2.1</b> Margin figures</a></li>
+<li class="chapter" data-level="6.2.2" data-path="tufte-figures.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-figures.html#arbitrary-margin-content"><i class="fa fa-check"></i><b>6.2.2</b> Arbitrary margin content</a></li>
+<li class="chapter" data-level="6.2.3" data-path="tufte-figures.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-figures.html#full-width-figures"><i class="fa fa-check"></i><b>6.2.3</b> Full-width figures</a></li>
+<li class="chapter" data-level="6.2.4" data-path="tufte-figures.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-figures.html#main-column-figures"><i class="fa fa-check"></i><b>6.2.4</b> Main column figures</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="tufte-sidenotes.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-sidenotes.html"><i class="fa fa-check"></i><b>6.3</b> Sidenotes</a></li>
+<li class="chapter" data-level="6.4" data-path="tufte-references.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-references.html"><i class="fa fa-check"></i><b>6.4</b> References</a></li>
+<li class="chapter" data-level="6.5" data-path="tufte-tables.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-tables.html"><i class="fa fa-check"></i><b>6.5</b> Tables</a></li>
+<li class="chapter" data-level="6.6" data-path="tufte-quotes.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-quotes.html"><i class="fa fa-check"></i><b>6.6</b> Block quotes</a></li>
+<li class="chapter" data-level="6.7" data-path="tufte-responsiveness.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-responsiveness.html"><i class="fa fa-check"></i><b>6.7</b> Responsiveness</a></li>
+<li class="chapter" data-level="6.8" data-path="tufte-sans.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-sans.html"><i class="fa fa-check"></i><b>6.8</b> Sans-serif fonts and epigraphs</a></li>
+<li class="chapter" data-level="6.9" data-path="tufte-css.html"><a href="https://bookdown.org/yihui/rmarkdown/tufte-css.html"><i class="fa fa-check"></i><b>6.9</b> Customize CSS styles</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="xaringan.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan.html"><i class="fa fa-check"></i><b>7</b> xaringan Presentations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="xaringan-start.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-start.html"><i class="fa fa-check"></i><b>7.1</b> Get started</a></li>
+<li class="chapter" data-level="7.2" data-path="xaringan-key.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-key.html"><i class="fa fa-check"></i><b>7.2</b> Keyboard shortcuts</a></li>
+<li class="chapter" data-level="7.3" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html"><i class="fa fa-check"></i><b>7.3</b> Slide formatting</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#slides-and-properties"><i class="fa fa-check"></i><b>7.3.1</b> Slides and properties</a></li>
+<li class="chapter" data-level="7.3.2" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#the-title-slide"><i class="fa fa-check"></i><b>7.3.2</b> The title slide</a></li>
+<li class="chapter" data-level="7.3.3" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#content-classes"><i class="fa fa-check"></i><b>7.3.3</b> Content classes</a></li>
+<li class="chapter" data-level="7.3.4" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#incremental-slides"><i class="fa fa-check"></i><b>7.3.4</b> Incremental slides</a></li>
+<li class="chapter" data-level="7.3.5" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#xaringan-notes"><i class="fa fa-check"></i><b>7.3.5</b> Presenter notes</a></li>
+<li class="chapter" data-level="7.3.6" data-path="xaringan-format.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-format.html#yolo-true"><i class="fa fa-check"></i><b>7.3.6</b> yolo: true</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="xaringan-preview.html"><a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html"><i class="fa fa-check"></i><b>7.4</b> Build and preview slides</a></li>
+<li class="chapter" data-level="7.5" data-path="css-and-themes.html"><a href="https://bookdown.org/yihui/rmarkdown/css-and-themes.html"><i class="fa fa-check"></i><b>7.5</b> CSS and themes</a></li>
+<li class="chapter" data-level="7.6" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html"><i class="fa fa-check"></i><b>7.6</b> Some tips</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#autoplay-slides"><i class="fa fa-check"></i><b>7.6.1</b> Autoplay slides</a></li>
+<li class="chapter" data-level="7.6.2" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#countdown-timer"><i class="fa fa-check"></i><b>7.6.2</b> Countdown timer</a></li>
+<li class="chapter" data-level="7.6.3" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#highlight-code-lines"><i class="fa fa-check"></i><b>7.6.3</b> Highlight code lines</a></li>
+<li class="chapter" data-level="7.6.4" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#working-offline"><i class="fa fa-check"></i><b>7.6.4</b> Working offline</a></li>
+<li class="chapter" data-level="7.6.5" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#macros"><i class="fa fa-check"></i><b>7.6.5</b> Macros</a></li>
+<li class="chapter" data-level="7.6.6" data-path="some-tips.html"><a href="https://bookdown.org/yihui/rmarkdown/some-tips.html#disadvantages"><i class="fa fa-check"></i><b>7.6.6</b> Disadvantages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="revealjs.html"><a href="https://bookdown.org/yihui/rmarkdown/revealjs.html"><i class="fa fa-check"></i><b>8</b> reveal.js Presentations</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="display-modes-2.html"><a href="https://bookdown.org/yihui/rmarkdown/display-modes-2.html"><i class="fa fa-check"></i><b>8.1</b> Display modes</a></li>
+<li class="chapter" data-level="8.2" data-path="appearance-and-style-1.html"><a href="https://bookdown.org/yihui/rmarkdown/appearance-and-style-1.html"><i class="fa fa-check"></i><b>8.2</b> Appearance and style</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="appearance-and-style-1.html"><a href="https://bookdown.org/yihui/rmarkdown/appearance-and-style-1.html#smaller-text"><i class="fa fa-check"></i><b>8.2.1</b> Smaller text</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="slide-transitions.html"><a href="https://bookdown.org/yihui/rmarkdown/slide-transitions.html"><i class="fa fa-check"></i><b>8.3</b> Slide transitions</a></li>
+<li class="chapter" data-level="8.4" data-path="slide-backgrounds.html"><a href="https://bookdown.org/yihui/rmarkdown/slide-backgrounds.html"><i class="fa fa-check"></i><b>8.4</b> Slide backgrounds</a></li>
+<li class="chapter" data-level="8.5" data-path="d-presentations.html"><a href="https://bookdown.org/yihui/rmarkdown/d-presentations.html"><i class="fa fa-check"></i><b>8.5</b> 2-D presentations</a></li>
+<li class="chapter" data-level="8.6" data-path="custom-css-1.html"><a href="https://bookdown.org/yihui/rmarkdown/custom-css-1.html"><i class="fa fa-check"></i><b>8.6</b> Custom CSS</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="custom-css-1.html"><a href="https://bookdown.org/yihui/rmarkdown/custom-css-1.html#slide-ids-and-classes"><i class="fa fa-check"></i><b>8.6.1</b> Slide IDs and classes</a></li>
+<li class="chapter" data-level="8.6.2" data-path="custom-css-1.html"><a href="https://bookdown.org/yihui/rmarkdown/custom-css-1.html#styling-text-spans"><i class="fa fa-check"></i><b>8.6.2</b> Styling text spans</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="reveal-js-options.html"><a href="https://bookdown.org/yihui/rmarkdown/reveal-js-options.html"><i class="fa fa-check"></i><b>8.7</b> reveal.js options</a></li>
+<li class="chapter" data-level="8.8" data-path="reveal-js-plugins.html"><a href="https://bookdown.org/yihui/rmarkdown/reveal-js-plugins.html"><i class="fa fa-check"></i><b>8.8</b> reveal.js plugins</a></li>
+<li class="chapter" data-level="8.9" data-path="other-features-9.html"><a href="https://bookdown.org/yihui/rmarkdown/other-features-9.html"><i class="fa fa-check"></i><b>8.9</b> Other features</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="community.html"><a href="https://bookdown.org/yihui/rmarkdown/community.html"><i class="fa fa-check"></i><b>9</b> Community Formats</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="prettydoc.html"><a href="https://bookdown.org/yihui/rmarkdown/prettydoc.html" title="9.1 Lightweight Pretty HTML Documents"><i class="fa fa-check"></i><b>9.1</b> Lightweight Pretty HTML Documents</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="prettydoc.html"><a href="https://bookdown.org/yihui/rmarkdown/prettydoc.html#prettydoc-usage"><i class="fa fa-check"></i><b>9.1.1</b> Usage</a></li>
+<li class="chapter" data-level="9.1.2" data-path="prettydoc.html"><a href="https://bookdown.org/yihui/rmarkdown/prettydoc.html#prettydoc-vignettes"><i class="fa fa-check"></i><b>9.1.2</b> Package vignettes</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="rmdformats.html"><a href="https://bookdown.org/yihui/rmarkdown/rmdformats.html"><i class="fa fa-check"></i><b>9.2</b> The rmdformats package</a></li>
+<li class="chapter" data-level="9.3" data-path="shower-presentations.html"><a href="https://bookdown.org/yihui/rmarkdown/shower-presentations.html"><i class="fa fa-check"></i><b>9.3</b> Shower presentations</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="websites.html"><a href="https://bookdown.org/yihui/rmarkdown/websites.html"><i class="fa fa-check"></i><b>10</b> Websites</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="blogdown-start.html"><a href="https://bookdown.org/yihui/rmarkdown/blogdown-start.html"><i class="fa fa-check"></i><b>10.1</b> Get started</a></li>
+<li class="chapter" data-level="10.2" data-path="blogdown-directory.html"><a href="https://bookdown.org/yihui/rmarkdown/blogdown-directory.html"><i class="fa fa-check"></i><b>10.2</b> The directory structure</a></li>
+<li class="chapter" data-level="10.3" data-path="blogdown-deploy.html"><a href="https://bookdown.org/yihui/rmarkdown/blogdown-deploy.html"><i class="fa fa-check"></i><b>10.3</b> Deployment</a></li>
+<li class="chapter" data-level="10.4" data-path="blogdown-other.html"><a href="https://bookdown.org/yihui/rmarkdown/blogdown-other.html"><i class="fa fa-check"></i><b>10.4</b> Other site generators</a></li>
+<li class="chapter" data-level="10.5" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html"><i class="fa fa-check"></i><b>10.5</b> rmarkdown’s site generator</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#a-simple-example"><i class="fa fa-check"></i><b>10.5.1</b> A simple example</a></li>
+<li class="chapter" data-level="10.5.2" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#site-authoring"><i class="fa fa-check"></i><b>10.5.2</b> Site authoring</a></li>
+<li class="chapter" data-level="10.5.3" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#common-elements"><i class="fa fa-check"></i><b>10.5.3</b> Common elements</a></li>
+<li class="chapter" data-level="10.5.4" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#site-navigation"><i class="fa fa-check"></i><b>10.5.4</b> Site navigation</a></li>
+<li class="chapter" data-level="10.5.5" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#html-generation"><i class="fa fa-check"></i><b>10.5.5</b> HTML generation</a></li>
+<li class="chapter" data-level="10.5.6" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#site-configuration"><i class="fa fa-check"></i><b>10.5.6</b> Site configuration</a></li>
+<li class="chapter" data-level="10.5.7" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#publishing-websites"><i class="fa fa-check"></i><b>10.5.7</b> Publishing websites</a></li>
+<li class="chapter" data-level="10.5.8" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#additional-examples"><i class="fa fa-check"></i><b>10.5.8</b> Additional examples</a></li>
+<li class="chapter" data-level="10.5.9" data-path="rmarkdown-site.html"><a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#custom-site-generators"><i class="fa fa-check"></i><b>10.5.9</b> Custom site generators</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="pkgdown.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown.html" title="11 HTML Documentation for R Packages"><i class="fa fa-check"></i><b>11</b> HTML Documentation for R Packages</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="pkgdown-start.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-start.html"><i class="fa fa-check"></i><b>11.1</b> Get started</a></li>
+<li class="chapter" data-level="11.2" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html"><i class="fa fa-check"></i><b>11.2</b> Components</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html#home-page"><i class="fa fa-check"></i><b>11.2.1</b> Home page</a></li>
+<li class="chapter" data-level="11.2.2" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html#function-reference"><i class="fa fa-check"></i><b>11.2.2</b> Function reference</a></li>
+<li class="chapter" data-level="11.2.3" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html#articles"><i class="fa fa-check"></i><b>11.2.3</b> Articles</a></li>
+<li class="chapter" data-level="11.2.4" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html#news"><i class="fa fa-check"></i><b>11.2.4</b> News</a></li>
+<li class="chapter" data-level="11.2.5" data-path="pkgdown-components.html"><a href="https://bookdown.org/yihui/rmarkdown/pkgdown-components.html#navigation-bar-1"><i class="fa fa-check"></i><b>11.2.5</b> Navigation bar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="books.html"><a href="https://bookdown.org/yihui/rmarkdown/books.html"><i class="fa fa-check"></i><b>12</b> Books</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="bookdown-start.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-start.html"><i class="fa fa-check"></i><b>12.1</b> Get started</a></li>
+<li class="chapter" data-level="12.2" data-path="bookdown-project.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html"><i class="fa fa-check"></i><b>12.2</b> Project structure</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="bookdown-project.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html#index-file"><i class="fa fa-check"></i><b>12.2.1</b> Index file</a></li>
+<li class="chapter" data-level="12.2.2" data-path="bookdown-project.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html#rmd-files"><i class="fa fa-check"></i><b>12.2.2</b> Rmd files</a></li>
+<li class="chapter" data-level="12.2.3" data-path="bookdown-project.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html#bookdown.yml"><i class="fa fa-check"></i><b>12.2.3</b> <code>_bookdown.yml</code></a></li>
+<li class="chapter" data-level="12.2.4" data-path="bookdown-project.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html#output.yml"><i class="fa fa-check"></i><b>12.2.4</b> <code>_output.yml</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html"><i class="fa fa-check"></i><b>12.3</b> Markdown extensions</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#equations" title="12.3.1 Number and reference equations"><i class="fa fa-check"></i><b>12.3.1</b> Number and reference equations</a></li>
+<li class="chapter" data-level="12.3.2" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#theorems"><i class="fa fa-check"></i><b>12.3.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="12.3.3" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#special-headers"><i class="fa fa-check"></i><b>12.3.3</b> Special headers</a></li>
+<li class="chapter" data-level="12.3.4" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#text-references"><i class="fa fa-check"></i><b>12.3.4</b> Text references</a></li>
+<li class="chapter" data-level="12.3.5" data-path="bookdown-markdown.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#cross-referencing"><i class="fa fa-check"></i><b>12.3.5</b> Cross referencing</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="bookdown-output.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html"><i class="fa fa-check"></i><b>12.4</b> Output Formats</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="bookdown-output.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#html"><i class="fa fa-check"></i><b>12.4.1</b> HTML</a></li>
+<li class="chapter" data-level="12.4.2" data-path="bookdown-output.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#latexpdf"><i class="fa fa-check"></i><b>12.4.2</b> LaTeX/PDF</a></li>
+<li class="chapter" data-level="12.4.3" data-path="bookdown-output.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#e-books"><i class="fa fa-check"></i><b>12.4.3</b> E-books</a></li>
+<li class="chapter" data-level="12.4.4" data-path="bookdown-output.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document"><i class="fa fa-check"></i><b>12.4.4</b> A single document</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="bookdown-edit.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-edit.html"><i class="fa fa-check"></i><b>12.5</b> Editing</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="bookdown-edit.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-edit.html#build-the-book"><i class="fa fa-check"></i><b>12.5.1</b> Build the book</a></li>
+<li class="chapter" data-level="12.5.2" data-path="bookdown-edit.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-edit.html#preview-a-chapter"><i class="fa fa-check"></i><b>12.5.2</b> Preview a chapter</a></li>
+<li class="chapter" data-level="12.5.3" data-path="bookdown-edit.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-edit.html#serve-the-book"><i class="fa fa-check"></i><b>12.5.3</b> Serve the book</a></li>
+<li class="chapter" data-level="12.5.4" data-path="bookdown-edit.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-edit.html#rstudio-addins"><i class="fa fa-check"></i><b>12.5.4</b> RStudio addins</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="bookdown-publish.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-publish.html"><i class="fa fa-check"></i><b>12.6</b> Publishing</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="bookdown-publish.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-publish.html#rstudio-connect"><i class="fa fa-check"></i><b>12.6.1</b> RStudio Connect</a></li>
+<li class="chapter" data-level="12.6.2" data-path="bookdown-publish.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-publish.html#other-services"><i class="fa fa-check"></i><b>12.6.2</b> Other services</a></li>
+<li class="chapter" data-level="12.6.3" data-path="bookdown-publish.html"><a href="https://bookdown.org/yihui/rmarkdown/bookdown-publish.html#publishers"><i class="fa fa-check"></i><b>12.6.3</b> Publishers</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="journals.html"><a href="https://bookdown.org/yihui/rmarkdown/journals.html"><i class="fa fa-check"></i><b>13</b> Journals</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="rticles-start.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-start.html"><i class="fa fa-check"></i><b>13.1</b> Get started</a></li>
+<li class="chapter" data-level="13.2" data-path="rticles-templates.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-templates.html"><i class="fa fa-check"></i><b>13.2</b> rticles templates</a></li>
+<li class="chapter" data-level="13.3" data-path="rticles-usage.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-usage.html"><i class="fa fa-check"></i><b>13.3</b> Using a template</a></li>
+<li class="chapter" data-level="13.4" data-path="rticles-latex.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-latex.html"><i class="fa fa-check"></i><b>13.4</b> LaTeX content</a></li>
+<li class="chapter" data-level="13.5" data-path="rticles-bookdown.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-bookdown.html"><i class="fa fa-check"></i><b>13.5</b> Linking with bookdown</a></li>
+<li class="chapter" data-level="13.6" data-path="rticles-contrib.html"><a href="https://bookdown.org/yihui/rmarkdown/rticles-contrib.html"><i class="fa fa-check"></i><b>13.6</b> Contributing templates</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="learnr.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr.html"><i class="fa fa-check"></i><b>14</b> Interactive Tutorials</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="learnr-start.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-start.html"><i class="fa fa-check"></i><b>14.1</b> Get started</a></li>
+<li class="chapter" data-level="14.2" data-path="learnr-types.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-types.html"><i class="fa fa-check"></i><b>14.2</b> Tutorial types</a></li>
+<li class="chapter" data-level="14.3" data-path="learnr-exercises.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-exercises.html"><i class="fa fa-check"></i><b>14.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="learnr-exercises.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-exercises.html#solutions"><i class="fa fa-check"></i><b>14.3.1</b> Solutions</a></li>
+<li class="chapter" data-level="14.3.2" data-path="learnr-exercises.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-exercises.html#hints"><i class="fa fa-check"></i><b>14.3.2</b> Hints</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="learnr-quiz.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-quiz.html"><i class="fa fa-check"></i><b>14.4</b> Quiz questions</a></li>
+<li class="chapter" data-level="14.5" data-path="learnr-videos.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-videos.html"><i class="fa fa-check"></i><b>14.5</b> Videos</a></li>
+<li class="chapter" data-level="14.6" data-path="learnr-shiny.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-shiny.html"><i class="fa fa-check"></i><b>14.6</b> Shiny components</a></li>
+<li class="chapter" data-level="14.7" data-path="learnr-nav.html"><a href="https://bookdown.org/yihui/rmarkdown/learnr-nav.html" title="14.7 Navigation and progress tracking"><i class="fa fa-check"></i><b>14.7</b> Navigation and progress tracking</a></li>
+</ul></li>
+<li class="part"><span><b>IV Other Topics</b></span></li>
+<li class="chapter" data-level="15" data-path="parameterized-reports.html"><a href="https://bookdown.org/yihui/rmarkdown/parameterized-reports.html"><i class="fa fa-check"></i><b>15</b> Parameterized reports</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="params-declare.html"><a href="https://bookdown.org/yihui/rmarkdown/params-declare.html"><i class="fa fa-check"></i><b>15.1</b> Declaring parameters</a></li>
+<li class="chapter" data-level="15.2" data-path="params-use.html"><a href="https://bookdown.org/yihui/rmarkdown/params-use.html"><i class="fa fa-check"></i><b>15.2</b> Using parameters</a></li>
+<li class="chapter" data-level="15.3" data-path="params-knit.html"><a href="https://bookdown.org/yihui/rmarkdown/params-knit.html"><i class="fa fa-check"></i><b>15.3</b> Knitting with parameters</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="params-knit.html"><a href="https://bookdown.org/yihui/rmarkdown/params-knit.html#the-knit-button"><i class="fa fa-check"></i><b>15.3.1</b> The <code>Knit</code> button</a></li>
+<li class="chapter" data-level="15.3.2" data-path="params-knit.html"><a href="https://bookdown.org/yihui/rmarkdown/params-knit.html#knit-with-custom-parameters" title="15.3.2 Knit with custom parameters"><i class="fa fa-check"></i><b>15.3.2</b> Knit with custom parameters</a></li>
+<li class="chapter" data-level="15.3.3" data-path="params-knit.html"><a href="https://bookdown.org/yihui/rmarkdown/params-knit.html#the-interactive-user-interface" title="15.3.3 The interactive user interface"><i class="fa fa-check"></i><b>15.3.3</b> The interactive user interface</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="params-publish.html"><a href="https://bookdown.org/yihui/rmarkdown/params-publish.html"><i class="fa fa-check"></i><b>15.4</b> Publishing</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="html-widgets.html"><a href="https://bookdown.org/yihui/rmarkdown/html-widgets.html"><i class="fa fa-check"></i><b>16</b> HTML Widgets</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="htmlwidgets-overview.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-overview.html"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html"><i class="fa fa-check"></i><b>16.2</b> A widget example (sigma.js)</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html#file-layout"><i class="fa fa-check"></i><b>16.2.1</b> File layout</a></li>
+<li class="chapter" data-level="16.2.2" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html#dependencies"><i class="fa fa-check"></i><b>16.2.2</b> Dependencies</a></li>
+<li class="chapter" data-level="16.2.3" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html#r-binding"><i class="fa fa-check"></i><b>16.2.3</b> R binding</a></li>
+<li class="chapter" data-level="16.2.4" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html#javascript-binding"><i class="fa fa-check"></i><b>16.2.4</b> JavaScript binding</a></li>
+<li class="chapter" data-level="16.2.5" data-path="htmlwidgets-sigma.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-sigma.html#demo"><i class="fa fa-check"></i><b>16.2.5</b> Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="htmlwidgets-create.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-create.html"><i class="fa fa-check"></i><b>16.3</b> Creating your own widgets</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="htmlwidgets-create.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-create.html#requirements"><i class="fa fa-check"></i><b>16.3.1</b> Requirements</a></li>
+<li class="chapter" data-level="16.3.2" data-path="htmlwidgets-create.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-create.html#scaffolding"><i class="fa fa-check"></i><b>16.3.2</b> Scaffolding</a></li>
+<li class="chapter" data-level="16.3.3" data-path="htmlwidgets-create.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-create.html#other-packages"><i class="fa fa-check"></i><b>16.3.3</b> Other packages</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="htmlwidgets-size.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-size.html"><i class="fa fa-check"></i><b>16.4</b> Widget sizing</a>
+<ul>
+<li class="chapter" data-level="16.4.1" data-path="htmlwidgets-size.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-size.html#specifying-a-sizing-policy"><i class="fa fa-check"></i><b>16.4.1</b> Specifying a sizing policy</a></li>
+<li class="chapter" data-level="16.4.2" data-path="htmlwidgets-size.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-size.html#javascript-resize-method"><i class="fa fa-check"></i><b>16.4.2</b> JavaScript resize method</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="htmlwidgets-advanced.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-advanced.html"><i class="fa fa-check"></i><b>16.5</b> Advanced topics</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="htmlwidgets-advanced.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-advanced.html#data-transformation"><i class="fa fa-check"></i><b>16.5.1</b> Data transformation</a></li>
+<li class="chapter" data-level="16.5.2" data-path="htmlwidgets-advanced.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-advanced.html#passing-javascript-functions" title="16.5.2 Passing JavaScript functions"><i class="fa fa-check"></i><b>16.5.2</b> Passing JavaScript functions</a></li>
+<li class="chapter" data-level="16.5.3" data-path="htmlwidgets-advanced.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-advanced.html#custom-widget-html"><i class="fa fa-check"></i><b>16.5.3</b> Custom widget HTML</a></li>
+<li class="chapter" data-level="16.5.4" data-path="htmlwidgets-advanced.html"><a href="https://bookdown.org/yihui/rmarkdown/htmlwidgets-advanced.html#create-a-widget-without-an-r-package" title="16.5.4 Create a widget without an R package"><i class="fa fa-check"></i><b>16.5.4</b> Create a widget without an R package</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="document-templates.html"><a href="https://bookdown.org/yihui/rmarkdown/document-templates.html"><i class="fa fa-check"></i><b>17</b> Document Templates</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="template-structure.html"><a href="https://bookdown.org/yihui/rmarkdown/template-structure.html"><i class="fa fa-check"></i><b>17.1</b> Template structure</a></li>
+<li class="chapter" data-level="17.2" data-path="template-support.html"><a href="https://bookdown.org/yihui/rmarkdown/template-support.html"><i class="fa fa-check"></i><b>17.2</b> Supporting files</a></li>
+<li class="chapter" data-level="17.3" data-path="template-pandoc.html"><a href="https://bookdown.org/yihui/rmarkdown/template-pandoc.html"><i class="fa fa-check"></i><b>17.3</b> Custom Pandoc templates</a></li>
+<li class="chapter" data-level="17.4" data-path="template-share.html"><a href="https://bookdown.org/yihui/rmarkdown/template-share.html"><i class="fa fa-check"></i><b>17.4</b> Sharing your templates</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="new-formats.html"><a href="https://bookdown.org/yihui/rmarkdown/new-formats.html"><i class="fa fa-check"></i><b>18</b> Creating New Formats</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="format-derive.html"><a href="https://bookdown.org/yihui/rmarkdown/format-derive.html"><i class="fa fa-check"></i><b>18.1</b> Deriving from built-in formats</a></li>
+<li class="chapter" data-level="18.2" data-path="format-custom.html"><a href="https://bookdown.org/yihui/rmarkdown/format-custom.html"><i class="fa fa-check"></i><b>18.2</b> Fully custom formats</a></li>
+<li class="chapter" data-level="18.3" data-path="format-use.html"><a href="https://bookdown.org/yihui/rmarkdown/format-use.html"><i class="fa fa-check"></i><b>18.3</b> Using a new format</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="shiny-documents.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html"><i class="fa fa-check"></i><b>19</b> Shiny Documents</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="shiny-start.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-start.html"><i class="fa fa-check"></i><b>19.1</b> Getting started</a></li>
+<li class="chapter" data-level="19.2" data-path="shiny-deploy.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-deploy.html"><i class="fa fa-check"></i><b>19.2</b> Deployment</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="shiny-deploy.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-deploy.html#shinyapps.io"><i class="fa fa-check"></i><b>19.2.1</b> ShinyApps.io</a></li>
+<li class="chapter" data-level="19.2.2" data-path="shiny-deploy.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-deploy.html#shiny-server-rstudio-connect" title="19.2.2 Shiny Server / RStudio Connect"><i class="fa fa-check"></i><b>19.2.2</b> Shiny Server / RStudio Connect</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="shiny-embedded.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-embedded.html"><i class="fa fa-check"></i><b>19.3</b> Embedded Shiny apps</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="shiny-embedded.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-embedded.html#shiny-embed-inline"><i class="fa fa-check"></i><b>19.3.1</b> Inline applications</a></li>
+<li class="chapter" data-level="19.3.2" data-path="shiny-embedded.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-embedded.html#external-applications"><i class="fa fa-check"></i><b>19.3.2</b> External applications</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="shiny-widgets.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-widgets.html"><i class="fa fa-check"></i><b>19.4</b> Shiny widgets</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="shiny-widgets.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-widgets.html#the-shinyapp-function"><i class="fa fa-check"></i><b>19.4.1</b> The <code>shinyApp()</code> function</a></li>
+<li class="chapter" data-level="19.4.2" data-path="shiny-widgets.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-widgets.html#example-k-means-clustering" title="19.4.2 Example: k-Means clustering"><i class="fa fa-check"></i><b>19.4.2</b> Example: k-Means clustering</a></li>
+<li class="chapter" data-level="19.4.3" data-path="shiny-widgets.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-widgets.html#widget-size-and-layout"><i class="fa fa-check"></i><b>19.4.3</b> Widget size and layout</a></li>
+</ul></li>
+<li class="chapter" data-level="19.5" data-path="shiny-multiple.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-multiple.html"><i class="fa fa-check"></i><b>19.5</b> Multiple pages</a></li>
+<li class="chapter" data-level="19.6" data-path="shiny-delay.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-delay.html"><i class="fa fa-check"></i><b>19.6</b> Delayed rendering</a></li>
+<li class="chapter" data-level="19.7" data-path="shiny-args.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-args.html" title="19.7 Output arguments for render functions"><i class="fa fa-check"></i><b>19.7</b> Output arguments for render functions</a>
+<ul>
+<li class="chapter" data-level="19.7.1" data-path="shiny-args.html"><a href="https://bookdown.org/yihui/rmarkdown/shiny-args.html#a-caveat"><i class="fa fa-check"></i><b>19.7.1</b> A caveat</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="https://bookdown.org/yihui/rmarkdown/references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body fixed">
+      <div class="body-inner">
+        <div class="book-header fixed" role="navigation" style="background-color: rgb(255, 255, 255);">
+          <a class="btn pull-left js-toolbar-action" aria-label="Toggle Sidebar" title="Toggle Sidebar" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-align-justify"></i></a><a class="btn pull-left js-toolbar-action" aria-label="Search" title="Search" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-search"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" title="Share" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">LinkedIn</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="Github" title="Github" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-github"></i></a><a class="btn pull-right js-toolbar-action" aria-label="Twitter" title="Twitter" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" title="Font Settings" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><a class="btn pull-left js-toolbar-action" aria-label="Edit" title="Edit" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-edit"></i></a><a class="btn pull-left js-toolbar-action" aria-label="PDF" title="PDF" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-file-pdf-o"></i></a><a class="btn pull-left js-toolbar-action" aria-label="Information about the toolbar" title="Information about the toolbar" href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#"><i class="fa fa-info"></i></a><h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="markdown-syntax" class="section level2" number="2.5">
+<h2 class="hasAnchor"><span class="header-section-number">2.5</span> Markdown syntax<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#markdown-syntax" class="anchor-section"></a></h2>
+<p>The text in an R Markdown document is written with the Markdown syntax. Precisely speaking, it is Pandoc’s Markdown. There are many flavors of Markdown invented by different people, and Pandoc’s flavor is the most comprehensive one to our knowledge. You can find the full documentation of Pandoc’s Markdown at <a href="https://pandoc.org/MANUAL.html" class="uri">https://pandoc.org/MANUAL.html</a>. We strongly recommend that you read this page at least once to know all the possibilities with Pandoc’s Markdown, even if you will not use all of them. This section is adapted from <a href="https://bookdown.org/yihui/bookdown/markdown-syntax.html">Section 2.1</a> of <span class="citation"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-xie2016" role="doc-biblioref">Xie</a> (<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-xie2016" role="doc-biblioref">2016</a>)</span>, and only covers a small subset of Pandoc’s Markdown syntax.</p>
+<div id="inline-formatting" class="section level3" number="2.5.1">
+<h3 class="hasAnchor"><span class="header-section-number">2.5.1</span> Inline formatting<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#inline-formatting" class="anchor-section"></a></h3>
+<p>Inline text will be <em>italic</em> if surrounded by underscores or asterisks, e.g., <code>_text_</code> or <code>*text*</code>. <strong>Bold</strong> text is produced using a pair of double asterisks (<code>**text**</code>). A pair of tildes (<code>~</code>) turn text to a subscript (e.g., <code>H~3~PO~4~</code> renders H<sub>3</sub>PO<sub>4</sub>). A pair of carets (<code>^</code>) produce a superscript (e.g., <code>Cu^2+^</code> renders Cu<sup>2+</sup>).</p>
+<p>To mark text as <code>inline code</code>, use a pair of backticks, e.g., <code>`code`</code>. To include <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-1" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-2" class="mjx-mrow"><span id="MJXc-Node-3" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">n</script></span> literal backticks, use at least <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-2-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-4" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-5" class="mjx-mrow"><span id="MJXc-Node-6" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-7" class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">+</span></span><span id="MJXc-Node-8" class="mjx-mn MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>+</mo><mn>1</mn></math></span></span><script type="math/tex" id="MathJax-Element-2">n+1</script></span> backticks outside, e.g., you can use four backticks to preserve three backtick inside: <code>```` ```code``` ````</code>, which is rendered as <code>```code```</code>.</p>
+<p>Hyperlinks are created using the syntax <code>[text](link)</code>, e.g., <code>[RStudio](https://www.rstudio.com)</code>. The syntax for images is similar: just add an exclamation mark, e.g., <code>![alt text or image title](path/to/image)</code>. Footnotes are put inside the square brackets after a caret <code>^[]</code>, e.g., <code>^[This is a footnote.]</code>.</p>
+<p>There are multiple ways to insert citations, and we recommend that you use BibTeX databases, because they work better when the output format is LaTeX/PDF. <a href="https://bookdown.org/yihui/bookdown/citations.html">Section 2.8</a> of <span class="citation"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-xie2016" role="doc-biblioref">Xie</a> (<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-xie2016" role="doc-biblioref">2016</a>)</span> has explained the details. The key idea is that when you have a BibTeX database (a plain-text file with the conventional filename extension <code>.bib</code>) that contains entries like:</p>
+<div class="sourceCode" id="cb17"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb17-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="va">@Manual</span>{<span class="ot">R</span>-<span class="ot">base</span>,</span>
+<span id="cb17-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {R: A Language and Environment for Statistical</span>
+<span id="cb17-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-3" aria-hidden="true" tabindex="-1"></a>    Computing},</span>
+<span id="cb17-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {{R Core Team}},</span>
+<span id="cb17-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">organization</span> = {R Foundation for Statistical Computing},</span>
+<span id="cb17-6"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">address</span> = {Vienna, Austria},</span>
+<span id="cb17-7"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2017},</span>
+<span id="cb17-8"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span> = {https://www.R-project.org/},</span>
+<span id="cb17-9"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>You may add a field named <code>bibliography</code> to the YAML metadata, and set its value to the path of the BibTeX file. Then in Markdown, you may use <code>@R-base</code> (which generates “<span class="citation"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-R-base" role="doc-biblioref">R Core Team</a> (<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-R-base" role="doc-biblioref">2021</a>)</span>”) or <code>[@R-base]</code> (which generates “<span class="citation">(<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#ref-R-base" role="doc-biblioref">R Core Team 2021</a>)</span>”) to reference the BibTeX entry. Pandoc will automatically generated a list of references in the end of the document.</p>
+</div>
+<div id="block-level-elements" class="section level3" number="2.5.2">
+<h3 class="hasAnchor"><span class="header-section-number">2.5.2</span> Block-level elements<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#block-level-elements" class="anchor-section"></a></h3>
+<p>Section headers can be written after a number of pound signs, e.g.,</p>
+<div class="sourceCode" id="cb18"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb18-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># First-level header</span></span>
+<span id="cb18-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Second-level header</span></span>
+<span id="cb18-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### Third-level header</span></span></code></pre></div>
+<p>If you do not want a certain heading to be numbered, you can add <code>{-}</code> or <code>{.unnumbered}</code> after the heading, e.g.,</p>
+<div class="sourceCode" id="cb19"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb19-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Preface {-}</span></span></code></pre></div>
+<p>Unordered list items start with <code>*</code>, <code>-</code>, or <code>+</code>, and you can nest one list within another list by indenting the sub-list, e.g.,</p>
+<div class="sourceCode" id="cb20"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb20-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>one item</span>
+<span id="cb20-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>one item</span>
+<span id="cb20-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>one item</span>
+<span id="cb20-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>one more item</span>
+<span id="cb20-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>one more item</span>
+<span id="cb20-6"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>one more item</span></code></pre></div>
+<p>The output is:</p>
+<ul>
+<li>one item</li>
+<li>one item</li>
+<li>one item
+<ul>
+<li>one more item</li>
+<li>one more item</li>
+<li>one more item</li>
+</ul></li>
+</ul>
+<p>Ordered list items start with numbers (you can also nest lists within lists), e.g.,</p>
+<div class="sourceCode" id="cb21"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb21-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>the first item</span>
+<span id="cb21-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>the second item</span>
+<span id="cb21-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>the third item</span>
+<span id="cb21-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>one unordered item</span>
+<span id="cb21-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>one unordered item</span></code></pre></div>
+<p>The output does not look too much different with the Markdown source:</p>
+<ol style="list-style-type: decimal">
+<li>the first item</li>
+<li>the second item</li>
+<li>the third item
+<ul>
+<li>one unordered item</li>
+<li>one unordered item</li>
+</ul></li>
+</ol>
+<p>Blockquotes are written after <code>&gt;</code>, e.g.,</p>
+<div class="sourceCode" id="cb22"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb22-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "I thoroughly disapprove of duels. If a man should challenge me,</span></span>
+<span id="cb22-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="at">  I would take him kindly and forgivingly by the hand and lead him</span></span>
+<span id="cb22-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="at">  to a quiet place and kill him."</span></span>
+<span id="cb22-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb22-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; --- Mark Twain</span></span></code></pre></div>
+<p>The actual output (we customized the style for blockquotes in this book):</p>
+<blockquote>
+<p>“I thoroughly disapprove of duels. If a man should challenge me,
+I would take him kindly and forgivingly by the hand and lead him
+to a quiet place and kill him.”</p>
+<p>— Mark Twain</p>
+</blockquote>
+<p>Plain code blocks can be written after three or more backticks, and you can also indent the blocks by four spaces, e.g.,</p>
+<div class="sourceCode" id="cb23"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb23-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="in">This text is displayed verbatim / preformatted</span></span>
+<span id="cb23-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-5" aria-hidden="true" tabindex="-1"></a>Or indent by four spaces:</span>
+<span id="cb23-6"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="in">    This text is displayed verbatim / preformatted</span></span></code></pre></div>
+<p>In general, you’d better leave at least one empty line between adjacent but different elements, e.g., a header and a paragraph. This is to avoid ambiguity to the Markdown renderer. For example, does “<code>#</code>” indicate a header below?</p>
+<div class="sourceCode" id="cb24"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb24-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb24-1" aria-hidden="true" tabindex="-1"></a>In R, the character</span>
+<span id="cb24-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># indicates a comment.</span></span></code></pre></div>
+<p>And does “<code>-</code>” mean a bullet point below?</p>
+<div class="sourceCode" id="cb25"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb25-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb25-1" aria-hidden="true" tabindex="-1"></a>The result of 5</span>
+<span id="cb25-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>3 is 2.</span></code></pre></div>
+<p>Different flavors of Markdown may produce different results if there are no blank lines.</p>
+</div>
+<div id="math-expressions" class="section level3" number="2.5.3">
+<h3 class="hasAnchor"><span class="header-section-number">2.5.3</span> Math expressions<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#math-expressions" class="anchor-section"></a></h3>
+<p>Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax, e.g., <code>$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$</code> (actual output: <span class="math inline"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span id="MathJax-Element-3-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-OPEN&quot;&gt;&lt;mo maxsize=&quot;1.2em&quot; minsize=&quot;1.2em&quot;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;mfrac linethickness=&quot;0&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mfrac&gt;&lt;mrow class=&quot;MJX-TeXAtom-CLOSE&quot;&gt;&lt;mo maxsize=&quot;1.2em&quot; minsize=&quot;1.2em&quot;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;msup&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-9" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-10" class="mjx-mrow"><span id="MJXc-Node-11" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.475em; padding-right: 0.06em;">f</span></span><span id="MJXc-Node-12" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-13" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span><span id="MJXc-Node-14" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span><span id="MJXc-Node-15" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.055em; padding-bottom: 0.318em;">=</span></span><span id="MJXc-Node-16" class="mjx-texatom MJXc-space3"><span id="MJXc-Node-17" class="mjx-mrow"><span id="MJXc-Node-18" class="mjx-mrow"><span id="MJXc-Node-19" class="mjx-TeXmathchoice"><span id="MJXc-Node-20" class="mjx-texatom"><span id="MJXc-Node-21" class="mjx-mrow"><span id="MJXc-Node-22" class="mjx-mo"><span class="mjx-char MJXc-TeX-size1-R" style="padding-top: 0.633em; padding-bottom: 0.633em;">(</span></span></span></span></span><span id="MJXc-Node-23" class="mjx-mfrac"><span class="mjx-box MJXc-stacked" style="width: 0.424em;"><span class="mjx-numerator" style="font-size: 70.7%; width: 0.6em; top: -1.095em;"><span id="MJXc-Node-24" class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span><span class="mjx-denominator" style="font-size: 70.7%; width: 0.6em; bottom: -0.524em;"><span id="MJXc-Node-25" class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span><span class="mjx-vsize" style="height: 1.144em; vertical-align: -0.37em;"></span></span><span id="MJXc-Node-26" class="mjx-TeXmathchoice"><span id="MJXc-Node-27" class="mjx-texatom"><span id="MJXc-Node-28" class="mjx-mrow"><span id="MJXc-Node-29" class="mjx-mo"><span class="mjx-char MJXc-TeX-size1-R" style="padding-top: 0.633em; padding-bottom: 0.633em;">)</span></span></span></span></span></span></span></span><span id="MJXc-Node-30" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-31" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.475em;">p</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-32" class="mjx-texatom" style=""><span id="MJXc-Node-33" class="mjx-mrow"><span id="MJXc-Node-34" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span></span></span><span id="MJXc-Node-35" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-36" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span id="MJXc-Node-37" class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-38" class="mjx-mi MJXc-space2"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.475em;">p</span></span><span id="MJXc-Node-39" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-40" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-41" class="mjx-texatom" style=""><span id="MJXc-Node-42" class="mjx-mrow"><span id="MJXc-Node-43" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-44" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-45" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>f</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>=</mo><mrow class="MJX-TeXAtom-ORD"><mrow><mrow class="MJX-TeXAtom-OPEN"><mo maxsize="1.2em" minsize="1.2em">(</mo></mrow><mfrac linethickness="0"><mi>n</mi><mi>k</mi></mfrac><mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="1.2em" minsize="1.2em">)</mo></mrow></mrow></mrow><msup><mi>p</mi><mrow class="MJX-TeXAtom-ORD"><mi>k</mi></mrow></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false">)</mo><mrow class="MJX-TeXAtom-ORD"><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></math></span></span><script type="math/tex" id="MathJax-Element-3">f(k)={n \choose k}p^{k}(1-p)^{n-k}</script></span>); math expressions of the display style can be written in a pair of double dollar signs, e.g., <code>$$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$$</code>, and the output looks like this:</p>
+<p><span class="math display"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="mjx-chtml MJXc-display" style="text-align: center;"><span id="MathJax-Element-4-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 119%; text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mrow&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-OPEN&quot;&gt;&lt;mo maxsize=&quot;2.047em&quot; minsize=&quot;2.047em&quot;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;mfrac linethickness=&quot;0&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mfrac&gt;&lt;mrow class=&quot;MJX-TeXAtom-CLOSE&quot;&gt;&lt;mo maxsize=&quot;2.047em&quot; minsize=&quot;2.047em&quot;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/mrow&gt;&lt;msup&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/msup&gt;&lt;msup&gt;&lt;mrow&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mrow&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;/mrow&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;/mrow&gt;&lt;/msup&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-46" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-47" class="mjx-mrow"><span id="MJXc-Node-48" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.475em; padding-right: 0.06em;">f</span></span><span id="MJXc-Node-49" class="mjx-mrow MJXc-space1"><span id="MJXc-Node-50" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-51" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span><span id="MJXc-Node-52" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span><span id="MJXc-Node-53" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.055em; padding-bottom: 0.318em;">=</span></span><span id="MJXc-Node-54" class="mjx-mrow MJXc-space3"><span id="MJXc-Node-55" class="mjx-TeXmathchoice"><span id="MJXc-Node-56" class="mjx-texatom"><span id="MJXc-Node-57" class="mjx-mrow"><span id="MJXc-Node-58" class="mjx-mo"><span class="mjx-char MJXc-TeX-size3-R" style="padding-top: 1.211em; padding-bottom: 1.211em;">(</span></span></span></span></span><span id="MJXc-Node-59" class="mjx-mfrac"><span class="mjx-box MJXc-stacked" style="width: 0.6em;"><span class="mjx-numerator" style="width: 0.6em; top: -1.144em;"><span id="MJXc-Node-60" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span><span class="mjx-denominator" style="width: 0.6em; bottom: -0.722em;"><span id="MJXc-Node-61" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span><span class="mjx-vsize" style="height: 1.865em; vertical-align: -0.722em;"></span></span><span id="MJXc-Node-62" class="mjx-TeXmathchoice"><span id="MJXc-Node-63" class="mjx-texatom"><span id="MJXc-Node-64" class="mjx-mrow"><span id="MJXc-Node-65" class="mjx-mo"><span class="mjx-char MJXc-TeX-size3-R" style="padding-top: 1.211em; padding-bottom: 1.211em;">)</span></span></span></span></span></span><span id="MJXc-Node-66" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-67" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.475em;">p</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.584em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-68" class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span><span id="MJXc-Node-69" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-70" class="mjx-mrow"><span id="MJXc-Node-71" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-72" class="mjx-mrow"><span id="MJXc-Node-73" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span id="MJXc-Node-74" class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-75" class="mjx-mi MJXc-space2"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.475em;">p</span></span></span><span id="MJXc-Node-76" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.71em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-77" class="mjx-texatom" style=""><span id="MJXc-Node-78" class="mjx-mrow"><span id="MJXc-Node-79" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-80" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-81" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">k</span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>f</mi><mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow><mo>=</mo><mrow><mrow class="MJX-TeXAtom-OPEN"><mo maxsize="2.047em" minsize="2.047em">(</mo></mrow><mfrac linethickness="0"><mi>n</mi><mi>k</mi></mfrac><mrow class="MJX-TeXAtom-CLOSE"><mo maxsize="2.047em" minsize="2.047em">)</mo></mrow></mrow><msup><mi>p</mi><mi>k</mi></msup><msup><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow><mrow class="MJX-TeXAtom-ORD"><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msup></math></span></span></span><script type="math/tex; mode=display" id="MathJax-Element-4">f\left(k\right)=\binom{n}{k}p^k\left(1-p\right)^{n-k}</script></span></p>
+<p>You can also use math environments inside <code>$ $</code> or <code>$$ $$</code>, e.g.,</p>
+<div class="sourceCode" id="cb26"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb26-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span><span class="kw">\begin</span>{<span class="ex">array</span>}<span class="ss">{ccc}</span></span>
+<span id="cb26-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ss">x_{11} &amp; x_{12} &amp; x_{13}</span><span class="sc">\\</span></span>
+<span id="cb26-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ss">x_{21} &amp; x_{22} &amp; x_{23}</span></span>
+<span id="cb26-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">array</span>}<span class="ss">$$</span></span></code></pre></div>
+<p><span class="math display"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="mjx-chtml MJXc-display" style="text-align: center;"><span id="MathJax-Element-5-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 119%; text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mtable columnalign=&quot;center center center&quot; rowspacing=&quot;4pt&quot; columnspacing=&quot;1em&quot;&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;11&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;12&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;13&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;21&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;22&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;23&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-82" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-83" class="mjx-mrow"><span id="MJXc-Node-84" class="mjx-mtable" style="vertical-align: -0.95em; padding: 0px 0.167em;"><span class="mjx-table"><span id="MJXc-Node-85" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-86" class="mjx-mtd" style="padding: 0px 0.5em 0px 0px; width: 1.314em;"><span id="MJXc-Node-87" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-88" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-89" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-90" class="mjx-texatom" style=""><span id="MJXc-Node-91" class="mjx-mrow"><span id="MJXc-Node-92" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">11</span></span></span></span></span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-93" class="mjx-mtd" style="padding: 0px 0.5em; width: 1.314em;"><span id="MJXc-Node-94" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-95" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-96" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-97" class="mjx-texatom" style=""><span id="MJXc-Node-98" class="mjx-mrow"><span id="MJXc-Node-99" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">12</span></span></span></span></span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-100" class="mjx-mtd" style="padding: 0px 0px 0px 0.5em; width: 1.314em;"><span id="MJXc-Node-101" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-102" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-103" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-104" class="mjx-texatom" style=""><span id="MJXc-Node-105" class="mjx-mrow"><span id="MJXc-Node-106" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.37em;">13</span></span></span></span></span></span><span class="mjx-strut"></span></span></span></span><span id="MJXc-Node-107" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-108" class="mjx-mtd" style="padding: 0.2em 0.5em 0px 0px;"><span id="MJXc-Node-109" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-110" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-111" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-112" class="mjx-texatom" style=""><span id="MJXc-Node-113" class="mjx-mrow"><span id="MJXc-Node-114" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">21</span></span></span></span></span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-115" class="mjx-mtd" style="padding: 0.2em 0.5em 0px;"><span id="MJXc-Node-116" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-117" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-118" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-119" class="mjx-texatom" style=""><span id="MJXc-Node-120" class="mjx-mrow"><span id="MJXc-Node-121" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">22</span></span></span></span></span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-122" class="mjx-mtd" style="padding: 0.2em 0px 0px 0.5em;"><span id="MJXc-Node-123" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-124" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-125" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-126" class="mjx-texatom" style=""><span id="MJXc-Node-127" class="mjx-mrow"><span id="MJXc-Node-128" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.37em;">23</span></span></span></span></span></span><span class="mjx-strut"></span></span></span></span></span></span></span></span><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="center center center" rowspacing="4pt" columnspacing="1em"><mtr><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>11</mn></mrow></msub></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>12</mn></mrow></msub></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>13</mn></mrow></msub></mtd></mtr><mtr><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>21</mn></mrow></msub></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>22</mn></mrow></msub></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>23</mn></mrow></msub></mtd></mtr></mtable></math></span></span></span><script type="math/tex; mode=display" id="MathJax-Element-5">\begin{array}{ccc}
+x_{11} & x_{12} & x_{13}\\
+x_{21} & x_{22} & x_{23}
+\end{array}</script></span></p>
+<div class="sourceCode" id="cb27"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb27-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$X = </span><span class="kw">\begin</span>{<span class="ex">bmatrix</span>}<span class="ss">1 &amp; x_{1}</span><span class="sc">\\</span></span>
+<span id="cb27-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ss">1 &amp; x_{2}</span><span class="sc">\\</span></span>
+<span id="cb27-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1 &amp; x_{3}</span></span>
+<span id="cb27-4"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">bmatrix</span>}<span class="ss">$$</span></span></code></pre></div>
+<p><span class="math display"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="mjx-chtml MJXc-display" style="text-align: center;"><span id="MathJax-Element-6-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 119%; text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mi&gt;X&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mrow&gt;&lt;mo&gt;[&lt;/mo&gt;&lt;mtable rowspacing=&quot;4pt&quot; columnspacing=&quot;1em&quot;&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;msub&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;mo&gt;]&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-129" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-130" class="mjx-mrow"><span id="MJXc-Node-131" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em; padding-right: 0.024em;">X</span></span><span id="MJXc-Node-132" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.055em; padding-bottom: 0.318em;">=</span></span><span id="MJXc-Node-133" class="mjx-mrow MJXc-space3"><span id="MJXc-Node-134" class="mjx-mo" style="vertical-align: -0.981em;"><span class="mjx-delim-v"><span class="mjx-char MJXc-TeX-size4-R" style="padding-top: 0.948em; padding-bottom: 0.948em;">⎡</span><span class="mjx-char MJXc-TeX-size4-R" style="line-height: 0.202em; margin-bottom: -0.101em; margin-top: 0px;">⎢</span><span class="mjx-char MJXc-TeX-size4-R" style="padding-top: 0.948em; padding-bottom: 0.895em;">⎣</span></span></span><span id="MJXc-Node-135" class="mjx-mtable" style="vertical-align: -1.65em; padding: 0px 0.167em;"><span class="mjx-table"><span id="MJXc-Node-136" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-137" class="mjx-mtd" style="padding: 0px 0.5em 0px 0px; width: 0.5em;"><span id="MJXc-Node-138" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-139" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-140" class="mjx-mtd" style="padding: 0px 0px 0px 0.5em; width: 0.961em;"><span id="MJXc-Node-141" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-142" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-143" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-144" class="mjx-texatom" style=""><span id="MJXc-Node-145" class="mjx-mrow"><span id="MJXc-Node-146" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span></span></span></span></span><span class="mjx-strut"></span></span></span></span><span id="MJXc-Node-147" class="mjx-mtr" style="height: 1.4em;"><span id="MJXc-Node-148" class="mjx-mtd" style="padding: 0.2em 0.5em 0px 0px;"><span id="MJXc-Node-149" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-150" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-151" class="mjx-mtd" style="padding: 0.2em 0px 0px 0.5em;"><span id="MJXc-Node-152" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-153" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-154" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-155" class="mjx-texatom" style=""><span id="MJXc-Node-156" class="mjx-mrow"><span id="MJXc-Node-157" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">2</span></span></span></span></span></span><span class="mjx-strut"></span></span></span></span><span id="MJXc-Node-158" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-159" class="mjx-mtd" style="padding: 0.2em 0.5em 0px 0px;"><span id="MJXc-Node-160" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-161" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-162" class="mjx-mtd" style="padding: 0.2em 0px 0px 0.5em;"><span id="MJXc-Node-163" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-164" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-165" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">x</span></span></span><span class="mjx-sub" style="font-size: 70.7%; vertical-align: -0.212em; padding-right: 0.071em;"><span id="MJXc-Node-166" class="mjx-texatom" style=""><span id="MJXc-Node-167" class="mjx-mrow"><span id="MJXc-Node-168" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.37em;">3</span></span></span></span></span></span><span class="mjx-strut"></span></span></span></span></span></span><span id="MJXc-Node-169" class="mjx-mo" style="vertical-align: -0.981em;"><span class="mjx-delim-v"><span class="mjx-char MJXc-TeX-size4-R" style="padding-top: 0.948em; padding-bottom: 0.948em;">⎤</span><span class="mjx-char MJXc-TeX-size4-R" style="line-height: 0.202em; margin-bottom: -0.101em; margin-top: 0px;">⎥</span><span class="mjx-char MJXc-TeX-size4-R" style="padding-top: 0.948em; padding-bottom: 0.895em;">⎦</span></span></span></span></span></span><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>X</mi><mo>=</mo><mrow><mo>[</mo><mtable rowspacing="4pt" columnspacing="1em"><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>1</mn></mrow></msub></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>2</mn></mrow></msub></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><msub><mi>x</mi><mrow class="MJX-TeXAtom-ORD"><mn>3</mn></mrow></msub></mtd></mtr></mtable><mo>]</mo></mrow></math></span></span></span><script type="math/tex; mode=display" id="MathJax-Element-6">X = \begin{bmatrix}1 & x_{1}\\
+1 & x_{2}\\
+1 & x_{3}
+\end{bmatrix}</script></span></p>
+<div class="sourceCode" id="cb28"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb28-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span><span class="sc">\Theta</span><span class="ss"> = </span><span class="kw">\begin</span>{<span class="ex">pmatrix</span>}<span class="sc">\alpha</span><span class="ss"> &amp; </span><span class="sc">\beta\\</span></span>
+<span id="cb28-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">\gamma</span><span class="ss"> &amp; </span><span class="sc">\delta</span></span>
+<span id="cb28-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">pmatrix</span>}<span class="ss">$$</span></span></code></pre></div>
+<p><span class="math display"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="mjx-chtml MJXc-display" style="text-align: center;"><span id="MathJax-Element-7-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 119%; text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;&amp;#x0398;&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mrow&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mtable rowspacing=&quot;4pt&quot; columnspacing=&quot;1em&quot;&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mi&gt;&amp;#x03B1;&lt;/mi&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;mi&gt;&amp;#x03B2;&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mi&gt;&amp;#x03B3;&lt;/mi&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;mi&gt;&amp;#x03B4;&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-170" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-171" class="mjx-mrow"><span id="MJXc-Node-172" class="mjx-mi"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.423em; padding-bottom: 0.37em;">Θ</span></span><span id="MJXc-Node-173" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.055em; padding-bottom: 0.318em;">=</span></span><span id="MJXc-Node-174" class="mjx-mrow MJXc-space3"><span id="MJXc-Node-175" class="mjx-mo"><span class="mjx-char MJXc-TeX-size3-R" style="padding-top: 1.211em; padding-bottom: 1.211em;">(</span></span><span id="MJXc-Node-176" class="mjx-mtable" style="vertical-align: -0.98em; padding: 0px 0.167em;"><span class="mjx-table"><span id="MJXc-Node-177" class="mjx-mtr" style="height: 1.219em;"><span id="MJXc-Node-178" class="mjx-mtd" style="padding: 0px 0.5em 0px 0px; width: 0.64em;"><span id="MJXc-Node-179" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-180" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">α</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-181" class="mjx-mtd" style="padding: 0px 0px 0px 0.5em; width: 0.573em;"><span id="MJXc-Node-182" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-183" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.475em; padding-right: 0.007em;">β</span></span><span class="mjx-strut"></span></span></span></span><span id="MJXc-Node-184" class="mjx-mtr" style="height: 1.241em;"><span id="MJXc-Node-185" class="mjx-mtd" style="padding: 0.2em 0.5em 0px 0px;"><span id="MJXc-Node-186" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-187" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.475em; padding-right: 0.025em;">γ</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-188" class="mjx-mtd" style="padding: 0.2em 0px 0px 0.5em;"><span id="MJXc-Node-189" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-190" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em; padding-right: 0.007em;">δ</span></span><span class="mjx-strut"></span></span></span></span></span></span><span id="MJXc-Node-191" class="mjx-mo"><span class="mjx-char MJXc-TeX-size3-R" style="padding-top: 1.211em; padding-bottom: 1.211em;">)</span></span></span></span></span><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi mathvariant="normal">Θ</mi><mo>=</mo><mrow><mo>(</mo><mtable rowspacing="4pt" columnspacing="1em"><mtr><mtd><mi>α</mi></mtd><mtd><mi>β</mi></mtd></mtr><mtr><mtd><mi>γ</mi></mtd><mtd><mi>δ</mi></mtd></mtr></mtable><mo>)</mo></mrow></math></span></span></span><script type="math/tex; mode=display" id="MathJax-Element-7">\Theta = \begin{pmatrix}\alpha & \beta\\
+\gamma & \delta
+\end{pmatrix}</script></span></p>
+<div class="sourceCode" id="cb29"><button type="button" class="copy-to-clipboard-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="fa fa-copy"></i></button><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb29-1"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span><span class="kw">\begin</span>{<span class="ex">vmatrix</span>}<span class="ss">a &amp; b</span><span class="sc">\\</span></span>
+<span id="cb29-2"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ss">c &amp; d</span></span>
+<span id="cb29-3"><a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">vmatrix</span>}<span class="ss">=ad-bc$$</span></span></code></pre></div>
+<p><span class="math display"><span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="mjx-chtml MJXc-display" style="text-align: center;"><span id="MathJax-Element-8-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 119%; text-align: center; position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;&lt;mrow&gt;&lt;mo&gt;|&lt;/mo&gt;&lt;mtable rowspacing=&quot;4pt&quot; columnspacing=&quot;1em&quot;&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;mtr&gt;&lt;mtd&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/mtd&gt;&lt;mtd&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;/mtd&gt;&lt;/mtr&gt;&lt;/mtable&gt;&lt;mo&gt;|&lt;/mo&gt;&lt;/mrow&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;/math&gt;" role="presentation"><span id="MJXc-Node-192" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-193" class="mjx-mrow"><span id="MJXc-Node-194" class="mjx-mrow"><span id="MJXc-Node-195" class="mjx-mo" style="vertical-align: -0.676em;"><span class="mjx-delim-v"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">∣</span><span class="mjx-char MJXc-TeX-main-R" style="line-height: 0.402em; margin-bottom: 0.014em; margin-top: -0.114em;">∣</span><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">∣</span></span></span><span id="MJXc-Node-196" class="mjx-mtable" style="vertical-align: -0.95em; padding: 0px 0.167em;"><span class="mjx-table"><span id="MJXc-Node-197" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-198" class="mjx-mtd" style="padding: 0px 0.5em 0px 0px; width: 0.529em;"><span id="MJXc-Node-199" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-200" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">a</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-201" class="mjx-mtd" style="padding: 0px 0px 0px 0.5em; width: 0.523em;"><span id="MJXc-Node-202" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-203" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">b</span></span><span class="mjx-strut"></span></span></span></span><span id="MJXc-Node-204" class="mjx-mtr" style="height: 1.2em;"><span id="MJXc-Node-205" class="mjx-mtd" style="padding: 0.2em 0.5em 0px 0px;"><span id="MJXc-Node-206" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-207" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">c</span></span><span class="mjx-strut"></span></span></span><span id="MJXc-Node-208" class="mjx-mtd" style="padding: 0.2em 0px 0px 0.5em;"><span id="MJXc-Node-209" class="mjx-mrow" style="margin-top: -0.2em;"><span id="MJXc-Node-210" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em; padding-right: 0.003em;">d</span></span><span class="mjx-strut"></span></span></span></span></span></span><span id="MJXc-Node-211" class="mjx-mo" style="vertical-align: -0.676em;"><span class="mjx-delim-v"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">∣</span><span class="mjx-char MJXc-TeX-main-R" style="line-height: 0.402em; margin-bottom: 0.014em; margin-top: -0.114em;">∣</span><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">∣</span></span></span></span><span id="MJXc-Node-212" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.055em; padding-bottom: 0.318em;">=</span></span><span id="MJXc-Node-213" class="mjx-mi MJXc-space3"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">a</span></span><span id="MJXc-Node-214" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em; padding-right: 0.003em;">d</span></span><span id="MJXc-Node-215" class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-216" class="mjx-mi MJXc-space2"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">b</span></span><span id="MJXc-Node-217" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">c</span></span></span></span><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>|</mo><mtable rowspacing="4pt" columnspacing="1em"><mtr><mtd><mi>a</mi></mtd><mtd><mi>b</mi></mtd></mtr><mtr><mtd><mi>c</mi></mtd><mtd><mi>d</mi></mtd></mtr></mtable><mo>|</mo></mrow><mo>=</mo><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></math></span></span></span><script type="math/tex; mode=display" id="MathJax-Element-8">\begin{vmatrix}a & b\\
+c & d
+\end{vmatrix}=ad-bc</script></span></p>
+</div>
+</div>
+<h3 class="hasAnchor">References<a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#section-" class="anchor-section"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-base" class="csl-entry">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.r-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-xie2016" class="csl-entry">
+———. 2016. <em>Bookdown: Authoring Books and Technical Documents with <span>R</span> Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="https://bookdown.org/yihui/rmarkdown/output-formats.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="https://bookdown.org/yihui/rmarkdown/r-code.html" class="navigation navigation-next " aria-label="Next page" style="margin-right: 0px;"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="./lab2_files/app.min.js"></script>
+<script src="./lab2_files/lunr.js"></script>
+<script src="./lab2_files/clipboard.min.js"></script>
+<script src="./lab2_files/plugin-search.js"></script>
+<script src="./lab2_files/plugin-sharing.js"></script>
+<script src="./lab2_files/plugin-fontsettings.js"></script>
+<script src="./lab2_files/plugin-bookdown.js"></script>
+<script src="./lab2_files/jquery.highlight.js"></script>
+<script src="./lab2_files/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/rmarkdown-book/edit/master/02-basics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["rmarkdown.pdf"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+
+</body></html>
