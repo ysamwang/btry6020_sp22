@@ -10,16 +10,23 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Intro
+This lab will explore variable transformations and multiple linear regression.
+
+
+# Variable transformations
+
 The World Bank provides valuable data on a number of public health and economic indicators for countries across the globe^[You can access the data at [http://data.worldbank.org/](http://data.worldbank.org/)]. Today, we will be looking indicators which might predict infant mortality, which is the number of children (per 1000 births) who die before the age of 1.
 
-### {Questions}
+### Questions
 * What factors do you think might affect or correlate with infant mortality?
 
 
 In particular, we will be looking at 2 specific factors which might correlate well with infant mortality (measured in 2015) - GDP per capita (roughly how much income does the average individual produce) as measured in 2013 and the proportion of the population with access to electricity (as measured in 2012). I have removed countries which were missing data for any of the variables.
 
 ```{r}
-wb.data <- read.csv("world_bank_data.csv")
+library("readr")
+fileName <- "https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lab2/world_bank_data.csv"
+wb.data <- read.csv(url(fileName))
 head(wb.data)
 ```
 
@@ -42,14 +49,16 @@ pairs(wb.data[, -1])
 * Do the relationships look linear?
 
 
-The relationship between electricity and infant mortality looks roughly linear, but the relationship between GDP per capita and infant mortality does not. Let's see how we might transform the data. The \texttt{log} function by default returns the natural log (base e), but we can specify the base as a second argument. So to take $\log_10(200)$ we would use \texttt{log(200, 10)}. Let's plot a few transformations and see what makes the relationship linear
+The relationship between electricity and infant mortality looks roughly linear, but the relationship between GDP per capita and infant mortality does not. Let's see how we might transform the data. The \texttt{log} function by default returns the natural log (base e). Let's plot a few transformations and see what makes the relationship linear.
+
+
 
 ```{r}
 # using the par(mfrow = c(r, c)) puts multiple 
 # plots together. The plots are arranged so 
 # that there are r rows and c columns
 
-par(mfrow = c(1,3))
+par(mfrow = c(2,2))
 
 # first argument is the X variable, second argument is the Y variable
 # main specifies the title, xlab specifies the x axis label 
@@ -57,113 +66,146 @@ par(mfrow = c(1,3))
 plot(wb.data$gdp_capita, wb.data$inf_mort, main = "Untransformed",
      xlab = "gdp per capita", ylab = "Infant Mortality (per 1000)")
 
-plot(wb.data$gdp_capita, log(wb.data$inf_mort,10),
+plot(wb.data$gdp_capita, log(wb.data$inf_mort),
      main = "log(mortality) ~ gdp/capita",
      xlab = "gdp per capita", ylab = "log(mortality)")
 
-plot(log(wb.data$gdp_capita, 10), log(wb.data$inf_mort, 10),
+plot(log(wb.data$gdp_capita), wb.data$inf_mort,
+     main = "mortality ~ log(gdp/capita)",
+     xlab = "log(gdp per capita)", ylab = "mortality")
+
+plot(log(wb.data$gdp_capita), log(wb.data$inf_mort),
      main = "log(mortality) ~ log(gdp/capita)",
      xlab = "log(gdp/capita)", ylab = "log(mortality)")
 
 ```
 
+The plots correspond to the models:
+$$
+E(\text{mortality} \mid \text{gdp/capita}) = b_0 + b_1\text{gdp/capita}
+$$
+
+$$
+E(\log(\text{mortality}) \mid \text{gdp/capita}) = b_0 + b_1\text{gdp/capita}
+$$
+$$
+E(\text{mortality} \mid \text{gdp/capita}) = b_0 + b_1\log(\text{gdp/capita})
+$$
+$$
+E(\log(\text{mortality}) \mid \text{gdp/capita}) = b_0 + b_1\log(\text{gdp/capita})
+$$
 
 ### Questions
 * Which transformation looks most linear?
+* How do we interpret the $b_1$ parameter in each model?
 
-
-The transformation that looks most linear requires taking the log of both mortality and gdp per capita. This corresponds to a model of
-\begin{equation}
-\log(\text{mortality}) = a + b\log(\text{gdp/capita}) + \epsilon
-\end{equation}
-
-Since we've transformed both variables (not just the y variable), the interpretation changes slightly. We can interpret the slope parameter $b$ as follows- ``Every percentage increase in GDP/Capita, is associated a b\% increase/decrease in infant mortality." Notice now, that we are talking about percentage changes in the variables of which we have taken the log.
-
-Let's estimate the two models now using the \texttt{lm} command.
+The transformation that looks most linear requires taking the log of both mortality and gdp per capita. We can estimate the transformed and untransformed models now using the \texttt{lm} command. 
 
 ```{r}
-# regression with electricity as X variable
-# note that since we specify the data frame, we can directly use
-# the variable names in the formulat
-# alternatively, we could have used
-# lm(wb.data$inf_mort ~ wb.data$elec_acc)
-elec.reg <- lm(inf_mort ~ elec_acc, data = wb.data)
+# Untransformed data
+untransformed.reg <- lm(inf_mort ~ gdp_capita, data = wb.data)
 
-summary(elec.reg)
+summary(untransformed.reg)
 
-# regression with electricity as X variable
-gdp.reg <- lm(log(inf_mort) ~ log(gdp_capita), data = wb.data)
+# regression with transformed data
+transformed.reg <- lm(log(inf_mort) ~ log(gdp_capita), data = wb.data)
 
-summary(gdp.reg)
-```
-
-We can also calculate the $\text{SS}_{total}$ $\text{SS}_{regression}$ and $\text{SS}_{errors}$ for the regression with electricity accesss. Using these quantities, we can calculate the $r^2$ value.  
-
-```{r}
-ss.total <- sum((wb.data$inf_mort - mean(wb.data$inf_mort))^2)
-
-# Get the estimated coefficients from the regression
-# elec.reg$coeff gets a vector the regression coefficients
-# The first element is the y intercept, and the second element is the slope
-a.hat <- elec.reg$coeff[1]
-b.hat <- elec.reg$coeff[2]
-inf_mort.hat <- a.hat + b.hat * wb.data$elec_acc
-
-# Calculate SS_regression
-ss.regression <- sum((inf_mort.hat - mean(wb.data$inf_mort))^2)
-
-# Calculate SS_error
-ss.error <- sum((inf_mort.hat - wb.data$inf_mort)^2)
-
-# Check that ss.regression + ss.error = ss.total
-ss.regression + ss.error
-ss.total
-
-# r^2 the long way
-ss.regression / ss.total
-
-# r^2 the short way
-cor(wb.data$inf_mort, wb.data$elec_acc)^2
-```
-
-If you look back to the summary of the regression above, you'll notice that this is the value reported as multiple R squared. Note, that we can also get the predicted values and residuals directly from the regression object
-```{r}
-# residuals
-resid <- elec.reg$residuals
-
-# Predicted values (also called fitted values)
-predicted <- elec.reg$fitted.values
-
+summary(transformed.reg)
 ```
 
 
-### Questions
-* Compare the $r^2$ from the gdp regression to the $r^2$ of the electricity regression. What does this suggest about which explanatory variable is a better predictor of infant mortality? 
-* Why do you think this is true?
-* Note that we aren't exactly comparing apples to apples here because one regression has log(mortality) as the response while the other uses mortality untransformed.
-
-
-Let's plot the data and the best fit line for each explanatory variable. For the gdp plot, we have highlighted Equitorial Guinea in blue which has a much higher infant mortality rate than we would expect based on their GDP per capita. 
+We can also look at the residuals plotted against GDP/Capita for both models. What does this suggest about how each model fits our data?
 ```{r}
 par(mfrow = c(1,2))
-plot(wb.data$elec_acc, wb.data$inf_mort,
-     main = "Electricity vs Infant Mortality",
-     xlab = "Electricity Access",
-     ylab = "Infant Mortality")
-abline(a = elec.reg$coeff[1], b = elec.reg$coeff[2], col = "red")
+plot(wb.data$gdp_capita, untransformed.reg$residuals, main = "Untransformed",
+     xlab = "gdp/capita", ylab = "residuals")
+plot(log(wb.data$gdp_capita), transformed.reg$residuals, main = "Transformed",
+     xlab = "log(gdp/capita)", ylab = "residuals")
+```
 
-plot(log(wb.data$gdp_capita), log(wb.data$inf_mort),
-     main = "log(GDP/Capita) vs log(Infant Mortality)",
-     xlab = "log(GDP/Capita)",
-     ylab = "log(Infant Mortality)")
-abline(a = gdp.reg$coeff[1], b = gdp.reg$coeff[2], col = "red")
 
-# the points command can plot on existing frames
-# col specifies the color, and pch specifies the shape of the mark
-points(log(wb.data$gdp_capita)[65], log(wb.data$inf_mort)[65], col = "blue", pch = 19)
+### Questions
+* Compare the $r^2$ from both regressions. What does this suggest about which explanatory variable is a better predictor of infant mortality? 
+* Why do you think this is true?
+* Note that we aren't exactly comparing apples to apples here because one regression has log(mortality) as the response while the other uses mortality untransformed. Is there a way you could make the comparison more fair?
+* Which model would you use if you are trying to predict infant mortality for a country not in the data set? Which model would you use if you are trying to explain to a collaborator? Which model would you use if you are trying to test if infant mortality is associated with gdp/capita?
+
+\newpage
+
+# Multiple Linear Regression
+The rest of today's lab will have less instruction, so it is on you, as a budding statistician to provide a bit of creativity and apply what we have learned so far. In addition, we will use this data set for the module 2 assessment.
+
+We will be looking at recent data from the UK Brexit vote. If you, like many Britons^[Google searches for ``What is the EU" spiked in the UK. Unfortunately, the spike occured after the vote had occured. [{http://www.npr.org/sections/alltechconsidered/2016/06/24/480949383/britains-google-searches-for-what-is-the-eu-spike-after-brexit-vote](http://www.npr.org/sections/alltechconsidered/2016/06/24/480949383/britains-google-searches-for-what-is-the-eu-spike-after-brexit-vote)], aren't familiar with what the European Union is, you can read more about the whole story here [http://www.vox.com/2016/6/17/11963668/brexit-uk-eu-explained](http://www.vox.com/2016/6/17/11963668/brexit-uk-eu-explained).
+
+
+In particular, the response variable we will be using is the percentage of individuals who voted to remain in the European Union in each local authority. We will be looking at several explanatory variables including
+
+
+* Percentage of individuals born in the UK
+* Percentage of individuals with no formal education beyond compulsory education
+* Percentage of individuals working in manufacturing
+* Percentage of individuals working in finance
+* Percentage of individuals over the age of 60
+* Percentage of individuals between the ages of 20 and 35
+
+
+Each row in the data represents a local authority/distict in either England or Wales. The Brexit vote took place in 2016, and the explanatory variables were collected in the 2011 census. Local Authorities with missing data have been removed.
+
+```{r}
+brexit.data <- read.csv("brexit_data.csv")
+head(brexit.data)
 ```
 
 ### Questions
-* According to Wikipedia, Equitorial Guinea has the highest GDP per capita in Sub-Saharan Africa due to significant oil production. However, that wealth is concentrated in a few elites, and not distributed evenly. Instead of GDP per capita (which is a mean), what might be an even better way to predict infant mortality?
+* What direction do you think the association is between each of these variables?
+* What strength do you think the association is between each of these variables?
 
+
+Again, we'll use the \texttt{pairs} command to plot the many pairs of variables at once. Note that we've excluded the first column here, since that's just the name of local authority
+```{r}
+pairs(brexit.data[, -1])
+```
+
+### Questions
+* Does this look like what you might expect?
+* What sticks out?
+* Do the relationships look roughly linear?
+
+
+## Multivariate Regression
+When there are multiple variables, we still use the regular \texttt{lm} command, but we need to specify more variables in our formula. Notice now on the right hand side of the $\sim$, we have multiple variables which are separated by the $+$ sign. We can add additional variables simply by using the $+$ sign.
+```{r}
+output <- lm(pct_remain ~ uk_born + no_edu, data = brexit.data)
+summary(output)
+```
+
+We can see from the summary of our model that the estimated model is
+$$\hat y_i = \hat b_0 + \hat b_{\text{uk born}} x_{i, \text{uk born}} + \hat b_{\text{no edu}} x_{i, \text{no edu}} $$
+where $b_{uk\_born} = -.33$ and $b_{no\_edu} = -1.20$.
+
+### Questions
+* How would you interpret each of the estimated coefficients above?
+* Does the magnitude (size) of the coefficients agree with what you would've guessed? 
+
+Now is your chance to explore the data yourself. Using the form above, fit a regression and include variables which you think might be associated with the percentage of people voting to remain in the EU. As you fit your models, check to make sure that the associations are roughly linear, and take a log transformation if necessary.
+
+Try fitting multiple models (at least 3 or 4) and think about what makes sense to investigate and what variables might need transformations.
+
+### Questions
+* Look at the $r^2$ value for each model. As you include more variables, what happens to the $r^2$ value? Does this always happen?
+* When you include more variables, how do the regression coefficients change for the existing variables? 
+
+
+After you are done, discuss your findings with your neighbor and pat yourself on the back. Congratulations, you're on your way to being a statistician!
+
+### Questions
+Questions to discuss with your neighbor.
+
+* How did you decide which variables to include and which variables not to include?
+* What is the proper interpretation of your regression coefficients?
+* What are the signs of each of the coefficients?
+* What are the relative sizes of the coefficients?
+* Does this make sense with what we know about the world?
+* What would we need to be careful about in interpreting these models?
+* What other variables (that weren't available) would also be good to include?
 
