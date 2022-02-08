@@ -1,7 +1,7 @@
 ---
 title: "Lab 2"
 author: "Y. Samuel Wang"
-date: "2/4/2022"
+date: "2/7/2022"
 output: pdf_document
 ---
 
@@ -152,7 +152,8 @@ In particular, the response variable we will be using is the percentage of indiv
 Each row in the data represents a local authority/distict in either England or Wales. The Brexit vote took place in 2016, and the explanatory variables were collected in the 2011 census. Local Authorities with missing data have been removed.
 
 ```{r}
-brexit.data <- read.csv("brexit_data.csv")
+fileName <- "https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lab2/uk_data.csv"
+brexit.data <- read.csv(url(fileName))
 head(brexit.data)
 ```
 
@@ -182,6 +183,13 @@ summary(output)
 We can see from the summary of our model that the estimated model is
 $$\hat y_i = \hat b_0 + \hat b_{\text{uk born}} x_{i, \text{uk born}} + \hat b_{\text{no edu}} x_{i, \text{no edu}} $$
 where $b_{uk\_born} = -.33$ and $b_{no\_edu} = -1.20$.
+
+We can get the residuals and fitted values from the \texttt{lm} objects, and we can look at the values for specific geographic areas. For instance, "Eden" is the 23 row in the list. We can see that by using the \texttt{which} function. The function returns the index for which the statement evalues to "TRUE." This means the 23rd element of geography vector is equal to "Eden." In the residual and fitted values vector, the 23rd element corresponds to the values for "Eden"
+```{r}
+which(brexit.data$geography == "Eden")
+output$residuals[23]
+output$fitted.values[23]
+```
 
 ### Questions
 * How would you interpret each of the estimated coefficients above?
