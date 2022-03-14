@@ -1,0 +1,65 @@
+---
+title: "Lab 3"
+author: "Y. Samuel Wang"
+date: "2/14/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Simulating data in R
+
+
+```{r}
+set.seed(1000)
+
+## standard deviation of error terms 
+sigma_eps <- 1
+# number of observations
+n <- 50
+# number of covariates
+p <- 5
+
+# Draw 
+X <- matrix(rnorm(n *p), n, p)
+
+
+# All coefficients are 1
+beta <- rep(1, p)
+
+# intercept of 2
+Y <- 2 + X %*% beta + rnorm(n, 0, sigma_eps)
+
+reg_fit <- lm(Y ~ X)
+
+summary(reg_fit)
+
+```
+
+
+```{r}
+
+## standard deviation of error terms 
+sigma_eps <- 1
+# number of observations
+n <- 50
+# number of covariates
+p <- 5
+
+# Draw 
+X <- matrix(rnorm(n *p), n, p)
+
+
+# All coefficients are 1
+beta <- rep(1, p)
+
+# intercept of 2
+Y <- 2 + X %*% beta + rnorm(n, 0, sigma_eps)
+
+reg_fit <- lm(Y ~ X)
+
+summary(reg_fit)
+
+```

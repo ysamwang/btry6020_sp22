@@ -1,0 +1,287 @@
+---
+title: "Lab 5"
+author: "Y. Samuel Wang"
+date: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Heteroscedasticity
+In this lab, we'll first show how to run a Bruesch Pagan Test and calculate the robust standard errors in R. We'll use the function \texttt{bptest} from the \texttt{lmtest} package to conduct a Bresuch Pagan test. We'll generate data twice, once from a model that is homoscedastic and once from a model that is heteroscedastic. 
+
+```{r}
+#install.packages("lmtest")
+library("lmtest")
+
+
+n <- 200
+# generate covariate X
+x <- runif(n, 1, 10) 
+hist(x)
+
+# generate Y2 with homoscedasticity
+sd1 <- mean(x/3)
+sd1
+y1 <- 1 + 2 * x + rnorm(n, sd = sd1)
+
+# generate Y2 with heteroscedasticity 
+y2 <- 1 + 2 * x + rnorm(n, sd = x/3)
+
+# fit linear model
+mod1 <- lm(y1 ~ x)
+mod2 <- lm(y2 ~ x)
+```
+```{r, echo = FALSE}
+par(mfrow = c(1,2))
+plot(x, y1, main = "Model 1: Homoscedastic")
+plot(x, mod1$res, main = "Model 1: Homoscedastic", ylab = "Residuals")
+
+par(mfrow = c(1,2))
+plot(x, y2, main = "Model 2: Heteroscedastic")
+plot(x, mod2$res, main = "Model 1: Heteroscedastic", ylab = "Residuals")
+
+
+```
+
+We can tell from the plots that the second model is heteroscedastic. But just to confirm, we can run a Bresuch Pagan test.
+```{r}
+# run breusch pagan test
+# use the bptest function (in the lmtest package)
+# takes the fitted linear model as an argument
+bptest(mod1)
+bptest(mod2)
+```
+
+\newpage
+
+The \texttt{sandwich} package calculates robust standard errors.
+```{r}
+# install.packages("sandwich)
+library("sandwich")
+
+## Get model based standard errors
+## vcov returns hat sigma^2 (X'X)^{-1}
+## which is the estimated covariance matrix of b-hat
+vcov(mod2)
+# diag gets the diagonal elements of the matrix
+# these elements correspond to the estimated variance of the coefficients
+# We take the square root to get the standard error
+sqrt(diag(vcov(mod2)))
+
+## Get sandwich standard errors
+## vcovHC (from the sandwich package) returns 
+# hat sigma^2 (X'X)^{-1} (X' W-hat X) (X'X)^{-1} which is 
+## the estimated covariance matrix of b-hat allowing for heteroscedasticity
+# type = "HC3" is a specific way to estimate the W-hat matrix
+# and is the most popular procedure
+vcovHC(mod2, type = "HC3")
+
+# Get the standard deviation of each of
+sqrt(diag(vcovHC(mod2, type = "HC3")))
+
+
+## Use the coeftest function (from the lmtest package)
+# by default, the coeftest function uses the "model based" standard errors
+
+coeftest(mod2)
+summary(mod2)
+# Create 95% confidence intervals using model based standard errors
+coefci(mod2, level = .95)
+
+# Instead of using the default model based standard errors
+# we can feed a specific variance matrix
+# and replace the default with the robust standard errors
+coeftest(mod2, vcov. = vcovHC(mod2, type = "HC3"))
+# Create 95% confidence intervals using robust standard errors
+coefci(mod2, level = .95, vcov. = vcovHC(mod2, type = "HC3"))
+
+```
+
+\newpage
+
+# Bootstrap 
+
+
+
+## Bootstrapping Linear Models 
+Now we'll consider bootstrapping linear models as discussed in class. We'll examine the housing price data set again, and fit a model which predicts the $\log(\text{price})$ given the $\log(\text{area})$,  bedrooms, bathrooms, whether there is a garage, and quality.
+
+```{r}
+# install.packages("lmboot")
+library("lmboot")
+
+fileName <- url("https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lectureData/estate.csv")
+housing_data <- read.csv(fileName)
+names(housing_data)
+
+
+mod <- lm(log(price) ~ log(area) + bed + bath + garage + quality,
+          data = housing_data)
+summary(mod)
+```
+
+We can now form confidence intervals for each of the parameters using a bootstrap procedure. We can see that in this case, each of the procedures we use to create confidence intervals, which should hopefully be reassuring that our model assumptions aren't too unreasonable.  
+```{r}
+## Gives list of parameter estimates from each empirical bootstrap
+# (or paired boostrap) resample
+paired.output <- paired.boot(log(price) ~ log(area) + bed + bath + garage + quality,
+          data = housing_data, B = 1000)
+## Gives list of parameter estimates from each wild bootstrap  resample
+wild.output <- wild.boot(log(price) ~ log(area) + bed + bath + garage + quality,
+          data = housing_data, B = 1000)
+
+
+## Apply takes a function (FUN) and applies it to each row or column
+## of a matrix
+## MAR = 1, applies the function to each row
+## MAR = 2, applies the function to each column
+
+## Get standard deviation of each column (which corresponds to the bootstrap estimates)
+paired.se <- apply(paired.output$bootEstParam, MAR = 2, FUN = sd)
+wild.se <- apply(wild.output$bootEstParam, MAR = 2, FUN = sd)
+
+## Get .025 and .975 quantiles of each column
+paired.pct <- apply(paired.output$bootEstParam,
+                    MAR = 2, FUN = quantile, prob = c(.025, .975))
+wild.pct <- apply(wild.output$bootEstParam,
+                  MAR = 2, FUN = quantile, prob = c(.025, .975))
+
+## Form the confidence intervals using the normal approximation
+# but SE's estimated via bootstrap
+cbind(mod$coef -1.96 * paired.se, mod$coef + 1.96 * paired.se)
+cbind(mod$coef -1.96 * wild.se, mod$coef + 1.96 * wild.se)
+
+# Percentile bootstrap
+t(paired.pct)
+t(wild.pct)
+
+# Model based confidence interval
+coefci(mod, level = .95)
+# Robust confidence intervals
+coefci(mod, level = .95, vcov. = vcovHC(mod, type = "HC3"))
+
+```
+
+#### Questions
+* Does it seem reasonable to use the pair (or case) bootstrap? Do the covariates seem to be fixed, or are they drawn from a random distribution?
+
+## Bootstrapping difficult quantities
+Suppose we have data that is drawn from an \textbf{exponential} distribution. For the purposes of this lab, the important thing to note is that it's a skewed distribution. The density is plotted below: 
+
+```{r, echo = F}
+x <- seq(.01, 5, by = .01)
+plot(x, dexp(x), type = "l", ylab = "density")
+```
+If we are interested in the mean, the central limit theorem says that the sample mean of our data will be close to a normal distribution as we get more and more observations. Thus, we can form a confidence interval in the same way that you learned in BTRY 6010. However, since the data is skewed, perhaps we're more interested in the median. Unfortunately, there isn't a straightforward way to get a confidence interval for the median. So we'll use empirical bootstrap from the \texttt{boot} package. 
+
+```{r}
+library("boot")
+?boot
+```
+
+```{r}
+set.seed(101)
+n <- 20
+## Draw n observations from an exponential distribution
+X <- rexp(n)
+
+# Function which we will feed into the boot function
+# takes two arguments
+# the data we observe
+# indices which are drawn with replacement from 1 to n
+# returns the statistic we are interested in (in this case the median) calculated
+# on the bootstrapped sample
+med.boot <- function(data, indices){
+  return(median(data[indices]))
+}
+
+# The boot function takes in the data
+# and requires a function used calculate the statistic of interest (in this 
+# case the median).
+# R determines the number of times to resample the data
+boot.output <- boot(data = X, statistic = med.boot, R = 500)
+
+# calculate various types of 95% confidence intervals 
+# norm: estimates the standard error of the statistic using the bootstrap 
+# and plugs that estimate in to the normal confidence interval
+# perc: is the percentage procedure which simply takes the quantiles of the 
+# bootstrapped statistics
+# bca: is a more complicated procedure which we won't cover, but has many 
+# theoretical and empirical advantages
+ci.output <- boot.ci(boot.output, conf = .95, type = c("norm", "perc", "bca"))
+
+# includes negative values
+# Element 1, is just the confidence level
+# the confidence interval is in elements 4/5
+ci.output$normal
+
+# confidence interval from percentile procedure
+# don't worry about elements 1-3, the confidence interval is in elements 4/5
+ci.output$perc[c(4,5)]
+
+# bca confidence interval
+# don't worry about elements 1-3, the confidence interval is in elements 4/5
+ci.output$bca[c(4,5)]
+
+```
+
+So we can form confidence intervals for the median, but do they work like we think they should? The median for the exponential distribution is $\log(2)$. Let's repeat the procedure many different times and see if we actually do include the median 95\% of the time. 
+
+
+```{r cars}
+# number of times we'll repeat the experiment
+sim.size <- 500
+
+n <- 20
+
+# where we will record relevant statistics
+
+rec <- matrix(0, sim.size, 6)
+colnames(rec) <- c("Normal Coverage", "Percentile Coverage", "Bca Coverage",
+                   "Normal length", "Percentile length", "Bca length")
+for(i in 1:sim.size){
+  # draw fresh data
+  X <- rexp(n)
+  
+  # calculate the 3 different confidence intervals
+  boot.output <- boot(data = X, statistic = med.boot, R = 500)
+  ci.output <- boot.ci(boot.output, conf = .95, type = c("norm", "perc", "bca"))
+  
+  # check if log(2) is in the normal CI
+  rec[i, 1] <- ci.output$normal[2] < log(2) & ci.output$normal[3] > log(2)
+  # record size of CI
+  rec[i, 4] <- ci.output$normal[3] - ci.output$normal[2]
+  # check if log(2) is in the percentile CI
+  rec[i, 2] <- ci.output$perc[4] < log(2) & ci.output$perc[5] > log(2)
+  rec[i, 5] <- ci.output$perc[5] - ci.output$perc[4]
+  # check if log(2) is in the percentile CI
+  rec[i, 3] <- ci.output$bca[4] < log(2) & ci.output$bca[5] > log(2)
+  rec[i, 6] <- ci.output$bca[5] - ci.output$bca[4]
+
+}
+
+
+
+# first three columns indicate whether the normal/percentile/bca CI's
+# contained the true median (we want this to be close to .95)
+# last three columns are the length of the normal/percentile/bca CI's
+# We take the mean of the columns and round to 4 digits
+round(colMeans(rec), 4)
+
+```
+
+#### Questions
+* How do the procedures compare? Is there a particular procedure which seems to do the best in terms of coverage?
+* If different procedures can give you a CI with exactly 95\% coverage, how else might you decide between procedures?
+* If you increase the number of samples (maybe try $n = 30$ or $50$), how does the coverage change? How does the length of the CI's change?
+
+
+\newpage
+#### Potential answers to discussion uestions
+* Does it seem reasonable to use the pair (or case) bootstrap? Do the covariates seem to be fixed, or are they drawn from a random distribution?
+  - The pairs bootstrap seems reasonable in this case because the data is observational and the covariate levels are not set. If we were to go out and get a new data set, it's likely that we would see different covariates for new houses.
+* If different procedures can give you a CI with exactly 95\% coverage, how else might you decide between procedures?
+  - If two different procedures both give the correct covareage rate, we would probably prefer the procedure that gives shorter intervals. This would mean that it's more precise and includes the "correct" value the right proportion of the time, but doesn't include as many "incorrect" values. 
+?

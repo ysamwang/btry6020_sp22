@@ -1,0 +1,219 @@
+---
+title: "Lab 3"
+author: ""
+date: "2/8/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Housing Data
+In class, we fit a few models using the housing data that we've been considering in lecture. In lab, we'll take a deeper dive into the data set. First, let's load the data
+
+```{r}
+fileName <- url("https://raw.githubusercontent.com/ysamwang/btry6020_sp22/main/lectureData/estate.csv")
+housing_data <- read.csv(fileName)
+
+head(housing_data)
+```
+
+Recall that there are 522 observations with the following variables:
+
+* price: in 2002 dollars
+* area: Square footage
+* bed: number of bedrooms
+* bath: number of bathrooms
+* ac: central AC (yes/no)
+* garage: number of garage spaces
+* pool: yes/no
+* year: year of construction
+* quality: high/medium/low
+* home style: coded 1 through 7
+* lot size: sq ft 
+* highway: near a highway (yes/no)
+
+There is no age data in the table, but we can compute it on our own from the year variable
+```{r}
+housing_data$age <- 2002 - housing_data$year
+```
+
+## Polynomial regression
+Taking the log of price and the log of age in order make the data look more linear. To compare, we fit a linear model to both the raw data and the log transformed data 
+
+```{r}
+reg_linear <- lm(price ~ age, data = housing_data)
+reg_log <- lm(log(price) ~ log(age), data = housing_data)
+
+
+par(mfrow = c(2,2), mar = c(4, 4, 1, 1))
+plot(housing_data$age, housing_data$price, cex.lab = .5, cex.axis = .5,
+     cex = .5, main = "Untransformed data", xlab = "age", ylab = "price")
+abline(a = reg_linear$coef[1], b = reg_linear$coef[2], col = "gray", lwd = 2)
+plot(housing_data$age, reg_linear$res, cex.lab = .5, cex.axis = .5,
+     cex = .5, main = "Untransformed data", xlab = "age", ylab = "residuals")
+abline(h = 0, col = "red")
+
+plot(log(housing_data$age), log(housing_data$price), cex.lab = .5, cex.axis = .5,
+     cex = .5, main = "Log transformed", xlab = "log(age)", ylab = "log(price)")
+abline(a = reg_log$coef[1], b = reg_log$coef[2], col = "gray", lwd = 2)
+plot(housing_data$age, reg_log$res, cex.lab = .5, cex.axis = .5,
+     cex = .5, main = "Log transformed", xlab = "log(age)", ylab = "residuals")
+abline(h = 0, col = "red")
+```
+
+We can see that the log transformed data looks much better, but as an alternative to fitting the transformed regression, we could also use polynomial regression instead of transforming the data. Let's use the raw data, but also include a covariate of age squared.
+
+```{r}
+## R requires you to use I(age^2) instead of just including age^2 
+reg_quad1 <- lm(price ~ age + I(age^2), data = housing_data)
+summary(reg_quad1)
+```
+
+The variables, age and age squared will be quite correlated, which as we will see on Wednesday can be a bad thing. So we typically will want to use a transformation of the polynomial covariates which are not as highly correlated. We will use the \texttt{poly} function which takes the covariate and the degree of the polynomial (in this case 2) and return a set of covariates which act like age and age squared, but are not correlated. It's also easier to type out instead of including a bunch of terms by hand. The coefficients aren't directly interpretable since the covariates aren't exactly age and age squared anymore, but we can see that they give the same fitted values as before.
+```{r}
+reg_quad2 <- lm(price ~ poly(age,2), data = housing_data)
+summary(reg_quad2)
+sum(abs(reg_quad1$fitted.values - reg_quad2$fitted.values)) 
+```
+
+We can't directly compare the $R^2$ of log transformed model to the quadratic model since the dependent variables are different, but we can take the \texttt{exp()} of the fitted values of the log model to bring the units back to dollars. We can then compare the RSS of the log model, the linear model, and the model which includes the quadratic term: 
+
+```{r}
+sum((housing_data$price - exp(reg_log$fitted.values))^2)
+sum((housing_data$price - reg_linear$fitted.values)^2)
+sum((housing_data$price - reg_quad2$fitted.values)^2)
+```
+
+We can also plot the fitted prices for each model. For this, we will use the \texttt{predict} function. The \texttt{predict} function takes an \texttt{lm} object and a data frame of covariate observations. It then computes the predicted value of the covariate observations based on the coefficients estimated in the \texttt{lm} object. Note that for the log regression, we still feed \texttt{predict} the raw (i.e., untransformed ages) but the predicted values are in log(price).
+```{r}
+plot(housing_data$age, housing_data$price, xlab = "age", ylab = "price")
+lines(2:120, exp(predict(reg_log, data.frame(age = 2:120))),
+      col = "green", lwd = 3)
+lines(2:120, predict(reg_linear, data.frame(age = 2:120)),
+      col = "cyan", lwd = 3)
+lines(2:120, predict(reg_quad1, data.frame(age = 2:120)),
+      col = "navy", lwd = 3)
+legend("topright", col = c("green", "cyan", "navy"),
+       legend = c("log", "linear", "quadratic"), lwd = 2)
+
+
+```
+
+
+
+#### Question:
+* We can see that the model for the log transform drastiacally outperforms the model with only the linear model. However, the model with the quadratic term slightly outperforms the model with the log transformed data. With your neighbors, discuss which model you would use if you were fitting the data?
+* What if you were trying to explain this model to a collaborator? 
+* What if you were just trying to predict what you should sell your house for?
+* What if the house you are selling is 150 years old?
+
+
+
+\newpage
+Can we improve the quadratic model? Let's see if we can just fit higher polynomials to the data. Using a 3rd degree polynomial is called a cubic and using a 4th degree polynomial is called a quartic. 
+```{r}
+reg_cubic <- lm(price ~ poly(age,3), data = housing_data)
+reg_quartic <- lm(price ~ poly(age,4), data = housing_data)
+
+summary(reg_quad2)
+summary(reg_cubic)
+summary(reg_quartic)
+
+plot(housing_data$age, housing_data$price, xlab = "age", ylab = "price")
+lines(2:120, exp(predict(reg_log, data.frame(age = 2:120))),
+      col = "green", lwd = 3)
+lines(2:120, predict(reg_linear, data.frame(age = 2:120)),
+      col = "cyan", lwd = 3)
+lines(2:120, predict(reg_quad1, data.frame(age = 2:120)),
+      col = "navy", lwd = 3)
+lines(2:120, predict(reg_cubic, data.frame(age = 2:120)),
+      col = "red", lwd = 3)
+lines(2:120, predict(reg_quartic, data.frame(age = 2:120)),
+      col = "purple", lwd = 3)
+legend("topright", col = c("green", "cyan", "navy", "red", "purple"),
+       legend = c("log", "linear", "quadratic", "cubic", "quartic"), lwd = 2)
+
+```
+
+#### Question:
+* Examine the $R^2$ values for each of the models. Each time we fit a higher order polynomial, the $R^2$ increases. Will this always be the case or is it just a coincidence? Why do you think so?
+* How would you decide which model to use?
+
+
+\newpage
+
+
+# Sampling Distributions
+We will use a small simulation study to examine how the sampling distributrion of estimated coefficients changes. In particular, we will simulate many different data sets
+and record the estimated $\hat b_1$ each time. We can then look at the distribution of the
+estimated $\hat b_1$, and by changing certain features of the data generating process,
+we can see how it effects the distribution of the resulting $\hat b_1$.
+
+Below, we draw \texttt{Y.norm} as a linear model where all the coefficients are 1 except the intercept which is set to $0$. The errors are drawn from a normal distribution with variance $1$. We draw \texttt{Y.gamma} as a linear model where all the coefficients are 1 except the intercept which is set to $0$. The errors are drawn from a gamma distribution with variance $1$ which is centered to have mean $0$. As you can see from the plot below, the gamma distirbution is skewed and not close to a normal distribution.
+
+```{r, echo = F}
+hist(rgamma(5000, 1, 1) - 1, main = "Gamma Distribution", freq = F, xlab = "X")
+```
+
+```{r}
+# Number of times we will simulate a new data set
+sim.size <- 10000
+
+# number of observations
+n <- 8
+# number of covariates
+p <- 1
+# standard deviation of the X values
+x.sd <- 1
+# drawing the covariates from a normal distribution
+X <- matrix(rnorm(n * p, sd = x.sd), n, p)
+# coefficients are all set to 1 (except no intercept)
+beta <- rep(1, p)
+
+# recording the estimated b_1 for each simulated data set
+rec <- matrix(0, sim.size, 2)
+
+for(i in 1:sim.size){
+  Y.norm <- X %*% beta + rnorm(n)
+  Y.gamma <- X %*% beta + (rgamma(n, 1, 1) - 1)
+  reg_norm <- lm(Y.norm ~X)
+  reg_gamma <- lm(Y.gamma ~X)
+  rec[i, ] <- c(reg_norm$coef[2], reg_gamma$coef[2])
+}
+
+# Plotting the histogram of the estimated b_1
+plot(density(rec[, 2]), xlab = expression(hat(b[1])),
+     type = "l", col = "blue", main = "Sampling Distribution", lwd = 2)
+lines(density(rec[, 1]), col = "red", lwd = 2)
+legend("topright", col = c("red", "blue"), legend = c("normal", "gamma"), lwd = 2)
+
+```
+
+
+### Questions
+* What is the mean of the distribution of $\hat b_1$ in each case?
+* How do the variances of the two distributions (normal errors vs gamma errors) compare? How do the shapes compare?
+* Increase x.sd from 1 to 3 and re-run the simulation. This will cause the X values to be more spread out. What happens to to the distributions of $\hat b_1$?
+* Change x.sd back to 1 and set n to 50. What happens to to the distributions of $\hat b_1$? How do the variances of the two distributions (normal errors vs gamma errors) compare? How do the shapes compare?
+
+
+\newpage
+
+# Potential Answers to the discussed questions
+
+
+* We can see that the model for the log transform drastically outperforms the model with only the linear model. However, the model with the quadratic term slightly outperforms the model with the log transformed data. With your neighbors, discuss which model you would use if you were fitting the data? What if you were trying to explain this model to a collaborator? What if you were just trying to predict what you should sell your house for? What if the house you are selling is 150 years old?
+  + It is true that the quadratic model performs better in terms of RSS than the log model, however, it might be easier to explain to a collaborator  For instance, it could be easier to just say a 1\% difference in square footage results in some corresponding \% difference in price rather than giving the interpretation of the polynomial model for which a corresponding statement about the difference in price corresponding to a difference in square footage depends on the specific value of square footage being considered. If you really are just concerned about prediction though, the smaller RSS of the quadratic model suggests that it might do better in prediction. However, the quadatic model is a more complicated than the log model (in the sense that it includes 2 covariates instead of 1) so it might be the case that we've overfit to the observed data and it's not clear whether the quadratic model would be better at predicting in new data. We also see that the quadratic model becomes a pretty bad fit for larger values of age, so we would need to be careful when predicting the price of older homes.
+
+* Examine the $R^2$ values for each of the models. Each time we fit a higher order polynomial, the $R^2$ increases. Will this always be the case or is it just a coincidence? Why do you think so? How would you decide which model to use?  
+  + Yes, the $R^2$ will always increase if you increase the degree of the polynomial. This is because when we fit the higher order polynomial, the best line fitting line of a lower order polynomial is always an option because we can set the coefficients of the higher degrees to be 0. So any best fitting line for the higher order polynomial must be at least as good as the best fitting line for the lower fitting polynomial. The cubic and quartic models do seem to have better behavior when predicting the price of older homes. However, they are even harder to interpret and explain. Also, it might be the case that we've overfit to the observed data and they may not be better at predicting in new data. Also, the difference between the $R^2$ of the cubic and quartic models is very small so the additional complexity of the quartic model might not be worth it.      
+  
+  
+  
+
+
+
+
+
