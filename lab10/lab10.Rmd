@@ -36,7 +36,7 @@ n <- 60 # number of samples
 p <- 50 # number of covariates
 rho <- .3 # correlation between each variable
 
-# Create covariance matrix with 1's on the diagonal and rho everywhere else
+# Create covariance matrix with 1's on the diagonal and rho on the off-diagonal
 sigma <- diag(p)
 sigma[abs(row(sigma) - col(sigma)) == 1] <- rho
 
@@ -113,6 +113,8 @@ to the remaining data. We then measure our predictive accuracy on the subset we 
 # Mostly the same imput as before, but use the function cv.glmnet
 # nfolds: specifies how many folds to use for K fold validation
 cv_lasso_fit <- cv.glmnet(x = X, y = Y, alpha = 1, nlambda = 20, nfolds = 10)
+cv_lasso_fit$lambda.min
+
 plot(cv_lasso_fit)
 
 # The two vertical lines on the plot above are:
@@ -123,15 +125,19 @@ cv_lasso_fit$lambda.1se
 
 ## use lasso_fit$lambda.min to get the lambda value with the best cv error
 coef(cv_lasso_fit, s = cv_lasso_fit$lambda.min)
-
+coef(cv_lasso_fit, s = cv_lasso_fit$lambda.1se)
 
 # the predict function takes the model we fit 'cv_lasso_fit'
 # using the 's' argument, we specify which value of lambda we want to use
 #   we could use either the lambda with the smallest CV error or the largest lambda 
 #   with CV error within 1 se of the lowest CV error
 # newx is the covariates for which we are making predictions. In this case, it's the test data
-lasso_predicted <- predict(cv_lasso_fit, s = cv_lasso_fit$lambda.min, newx = X.test)
+lasso_predicted <- predict(cv_lasso_fit, s = cv_lasso_fit$lambda.min, newx = X.test, type = "response")
 # lasso_predicted <- predict(cv_lasso_fit, s = cv_lasso_fit$lambda.1se, newx = X.test)
+
+
+coef(cv_lasso_fit, s = cv_lasso_fit$lambda.min)
+
 
 # We can calculate the mean squared prediction error on test data
 lasso_test_error <- mean((Y.test - lasso_predicted)^2)
